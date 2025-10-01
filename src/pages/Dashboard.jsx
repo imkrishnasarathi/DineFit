@@ -10,6 +10,7 @@ const Dashboard = () => {
   const [recentMeals, setRecentMeals] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [mealStats, setMealStats] = useState();
+  const [showInvitation, setShowInvitation] = useState(true);
 
   useEffect(() => {
     loadMealData();
@@ -62,7 +63,7 @@ const Dashboard = () => {
               title="Settings"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0 3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </Link>
@@ -90,8 +91,7 @@ const Dashboard = () => {
             )}
           </div>
         </div>
-        
-        {!hasProfile && !showProfileSetup && (
+        {!hasProfile && !showProfileSetup && showInvitation && (
           <div className="mb-8 backdrop-blur-sm bg-gradient-to-r from-emerald-100/50 to-teal-100/50 rounded-3xl p-6 sm:p-8 shadow-xl border border-emerald-200/30">
             <div className="text-center">
               <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-3">
@@ -108,7 +108,7 @@ const Dashboard = () => {
                   Set Up My Profile
                 </button>
                 <button
-                  onClick={() => setShowProfileSetup(false)}
+                  onClick={() => setShowInvitation(false)}
                   className="px-6 py-4 text-gray-600 bg-white/70 backdrop-blur-sm rounded-2xl hover:bg-white/90 transition-all duration-200 border border-gray-200"
                 >
                   Maybe Later
@@ -184,7 +184,7 @@ const Dashboard = () => {
                     {meal.type === 'Breakfast' ? '🌅' : 
                      meal.type === 'Lunch' ? '☀️' : 
                      meal.type === 'Dinner' ? '🌙' : 
-                     meal.type === 'Snack' ? '�' : '🥗'}
+                     meal.type === 'Snack' ? '' : '🥗'}
                   </span>
                 </div>
                 <div className="flex-1 min-w-0">
