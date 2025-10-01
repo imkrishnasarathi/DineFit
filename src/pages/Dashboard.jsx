@@ -73,7 +73,7 @@ const Dashboard = () => {
           <p className="text-xl sm:text-2xl text-gray-700 mb-4">
             Discover recipes tailored to your taste
           </p>
-          <div className="flex justify-center items-center space-x-6 text-sm text-gray-600 backdrop-blur-sm bg-white/50 rounded-2xl p-4 inline-flex">
+          <div className="justify-center items-center space-x-6 text-sm text-gray-600 backdrop-blur-sm bg-white/50 rounded-2xl p-4 inline-flex">
             <span className="flex items-center">
               <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
               Meals/Day: {userPreferences.mealsPerDay}
