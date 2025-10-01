@@ -158,6 +158,12 @@ const Dashboard = () => {
             🔍 Discover Recipes
           </Link>
           <Link
+            to="/meal-planner"
+            className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-lg px-8 py-3 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg text-center"
+          >
+            🗓️ Plan Meals
+          </Link>
+          <Link
             to="/favorites"
             className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-semibold text-lg px-8 py-3 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg text-center"
           >

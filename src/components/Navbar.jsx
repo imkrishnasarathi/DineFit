@@ -53,6 +53,16 @@ const Navbar = () => {
               >
                 Dashboard
               </NavLink>
+              <NavLink 
+                to="/meal-planner" 
+                className={({isActive}) => `text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
+                  isActive 
+                    ? (isHomePage ? 'bg-green-600 text-white' : 'bg-green-800 text-white')
+                    : (isHomePage ? 'text-gray-700 hover:bg-green-100 hover:text-green-700' : 'text-white hover:bg-green-700')
+                }`}
+              >
+                Meal Planner
+              </NavLink>
               <button 
                 onClick={handleLogout}
                 className={`text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${

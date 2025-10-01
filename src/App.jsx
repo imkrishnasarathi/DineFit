@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard'
 import Settings from './pages/Settings'
 import Recipes from './pages/Recipes'
 import Favorites from './pages/Favorites'
+import MealPlanner from './pages/MealPlanner'
 import './index.css'
 function App() {
   console.log('App component rendering...');
@@ -39,6 +40,11 @@ function App() {
             <Route path="/favorites" element={ 
               <ProtectedRoute>
                 <Favorites /> 
+              </ProtectedRoute>
+            } />
+            <Route path="/meal-planner" element={ 
+              <ProtectedRoute>
+                <MealPlanner /> 
               </ProtectedRoute>
             } />
             <Route path="*" element={ <div className="p-8 text-center">404 - Page Not Found</div> } />
