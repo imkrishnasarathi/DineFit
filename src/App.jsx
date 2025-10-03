@@ -11,6 +11,7 @@ import Settings from './pages/Settings'
 import Recipes from './pages/Recipes'
 import Favorites from './pages/Favorites'
 import './index.css'
+import MealHistory from './pages/MealHistory'
 function App() {
   console.log('App component rendering...');
   return (
@@ -42,7 +43,12 @@ function App() {
                 <Favorites />
               </ProtectedRoute>
             } />
-            <Route path="*" element={<div className="p-8 text-center">404 - Page Not Found</div>} />
+            <Route path="/meal-history" element={ 
+              <ProtectedRoute>
+                <MealHistory /> 
+              </ProtectedRoute>
+            } />
+            <Route path="*" element={ <div className="p-8 text-center">404 - Page Not Found</div> } />
           </Routes>
         </main>
 

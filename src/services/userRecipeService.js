@@ -64,6 +64,27 @@ class UserRecipeService {
     }
   }
 
+  async getAllMealLogs(userId) {
+    try {
+      const response = await databases.listDocuments(
+        this.databaseId,
+        this.mealLogsCollectionId,
+        [
+          Query.equal('userId', userId),
+        ]
+      );
+
+      return response.documents.map(meal => ({
+        id: meal.recipeId,
+        ...meal,
+        recipeData: meal.recipeData ? JSON.parse(meal.recipeData) : null
+      }));
+    } catch (error) {
+      console.error('Error getting recipes from database:', error);
+      return [];
+    }
+  }
+
   async addToFavorites(userId, recipe) {
     try {
       // Check if already exists

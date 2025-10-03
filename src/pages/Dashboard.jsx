@@ -206,7 +206,7 @@ const Dashboard = () => {
                     {meal.type === 'Breakfast' ? '🌅' : 
                      meal.type === 'Lunch' ? '☀️' : 
                      meal.type === 'Dinner' ? '🌙' : 
-                     meal.type === 'Snack' ? '�' : '🥗'}
+                     meal.type === 'Snack' ? '🍪' : '🥗'}
                   </span>
                 </div>
                 <div className="flex-1 min-w-0">
@@ -221,9 +221,12 @@ const Dashboard = () => {
             ))}
           </div>
           <div className="text-center mt-6">
-            <button className="text-green-600 hover:text-green-700 font-medium transition-colors duration-200">
-              View Full Meal History →
-            </button>
+            <Link
+              to='/meal-history'
+              className='w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-semibold text-lg px-8 py-3 rounded-xl shadow-lg text-center'
+            >
+              👀 View Full Meal History
+            </Link>
           </div>
         </div>
         
