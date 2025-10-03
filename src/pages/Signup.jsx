@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { validatePassword } from "../utils/validation";
 import { Eye, EyeOff } from "lucide-react";
 import PasswordStrength from "../components/PasswordStrength";
+import { account } from "../appwriteClient";
 
 const Signup = () => {
   const { signup, user } = useAuth();
@@ -61,6 +62,16 @@ const Signup = () => {
     }
   };
 
+
+  const handleGoogleOAuth = () => {
+    console.log("clicked")
+       account.createOAuth2Session(
+      "google",
+      "http://localhost:5173/success",  // TODO: Replace with your deployed URL in production
+      "http://localhost:5173/failure"
+    )
+  }
+
   return (
     <div className="min-h-[calc(100vh-4rem)] relative overflow-hidden">
       {/* Background gradients */}
@@ -83,6 +94,7 @@ const Signup = () => {
             <p className="text-lg sm:text-xl text-gray-600">
               Start your personalized fitness journey today
             </p>
+            <button onClick={handleGoogleOAuth} className="border-2 border-green-400 rounded-xl px-4 py-2 mt-6 ">continue with google</button>
           </div>
 
           {/* Form */}

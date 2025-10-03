@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { forceLogout } from '../utils/sessionUtils';
-import { Eye, EyeOff } from 'lucide-react'; 
+import { Eye, EyeOff } from 'lucide-react';
+import { account } from '../appwriteClient';
 
 const Login = () => {
     const { login, guestLogin, user } = useAuth();
@@ -16,6 +17,7 @@ const Login = () => {
         email: '',
         password: ''
     });
+
 
     useEffect(() => {
         if (user) {
@@ -85,20 +87,31 @@ const Login = () => {
             setIsLoading(false);
         }
     };
+
+
+    const handleGoogleOAuth = () => {
+        console.log("clicked")
+        account.createOAuth2Session(
+            "google",
+            "http://localhost:5173/success", // TODO: Replace with your deployed URL in production
+            "http://localhost:5173/failure"
+        )
+    }
+
     return (
         <div className="min-h-[calc(100vh-4rem)] relative overflow-hidden">
-            
+
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100"></div>
-            
+
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-r from-emerald-200/30 to-teal-300/30 rounded-full blur-3xl animate-float"></div>
                 <div className="absolute top-1/2 -right-32 w-96 h-96 bg-gradient-to-r from-cyan-200/25 to-blue-300/25 rounded-full blur-3xl animate-float-delayed"></div>
                 <div className="absolute -bottom-32 left-1/3 w-72 h-72 bg-gradient-to-r from-teal-200/30 to-emerald-300/30 rounded-full blur-3xl animate-float-slow"></div>
-                
+
                 <div className="absolute top-20 right-20 w-12 h-12 bg-gradient-to-r from-emerald-400 to-teal-500 transform rotate-45 animate-spin-slow opacity-15"></div>
                 <div className="absolute bottom-32 left-16 w-8 h-24 bg-gradient-to-b from-cyan-400 to-blue-500 transform -skew-y-12 animate-sway opacity-20"></div>
             </div>
-            
+
             <div className="relative z-10 flex items-center justify-center p-4 min-h-[calc(100vh-4rem)]">
                 <div className="w-full max-w-md backdrop-blur-sm bg-white/40 p-8 sm:p-10 lg:p-12 rounded-3xl shadow-2xl border border-white/30">
                     <div className="text-center mb-8">
@@ -106,7 +119,7 @@ const Login = () => {
                             Welcome Back
                         </h1>
                         <p className="text-lg sm:text-xl text-gray-600">Sign in to continue your fitness journey</p>
-                        
+
                         {!isOnline && (
                             <div className="mt-4 p-3 bg-orange-100/80 backdrop-blur-sm border border-orange-300 text-orange-700 rounded-xl">
                                 <div className="flex items-center justify-center">
@@ -173,8 +186,8 @@ const Login = () => {
                                 </div>
                             </div>
                         </div>
-                        <button 
-                            type="submit" 
+                        <button
+                            type="submit"
                             disabled={isLoading}
                             className="group relative w-full inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl hover:from-emerald-700 hover:to-teal-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-70 disabled:transform-none"
                         >
@@ -194,8 +207,8 @@ const Login = () => {
                             </span>
                         </button>
                     </form>
-                    
-                     
+
+
                     <div className="relative my-6">
                         <div className="absolute inset-0 flex items-center">
                             <div className="w-full border-t border-gray-300/50"></div>
@@ -204,8 +217,8 @@ const Login = () => {
                             <span className="px-4 bg-white/40 backdrop-blur-sm text-gray-500 rounded-xl">or</span>
                         </div>
                     </div>
-                    
-                    
+
+
                     <button
                         type="button"
                         onClick={handleGuestLogin}
@@ -219,14 +232,23 @@ const Login = () => {
                             {isLoading ? 'Starting Guest Session...' : 'Continue as Guest'}
                         </span>
                     </button>
-                    
-                    
+
+                    <button
+                        type="button"
+                        onClick={handleGoogleOAuth}
+                        disabled={isLoading}
+                        className="mt-2 group relative w-full inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-gray-700 bg-white/70 backdrop-blur-sm border-2 border-gray-300/50 rounded-2xl hover:bg-white/90 hover:border-gray-400/50 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:transform-none"
+                    >
+                        continue with google
+                    </button>
+
+
                     <div className="mt-4 p-3 bg-blue-50/80 backdrop-blur-sm border border-blue-200/50 text-blue-700 rounded-xl">
                         <p className="text-sm text-center">
-                            <span className="font-medium">Guest Mode:</span> Try DineFit without creating an account. 
+                            <span className="font-medium">Guest Mode:</span> Try DineFit without creating an account.
                         </p>
                     </div>
-                    
+
                     <div className="text-center mt-6">
                         <p className="text-gray-600">
                             Don't have an account?{' '}

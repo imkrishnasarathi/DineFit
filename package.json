@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
     "appwrite": "^18.1.1",
+    "dotenv": "^17.2.3",
     "lucide-react": "^0.544.0",
     "node-appwrite": "^17.1.0",
     "react": "^19.1.0",
