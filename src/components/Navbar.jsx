@@ -19,7 +19,14 @@ const Navbar = () => {
           : 'bg-green-600 text-white'
       }`}>
         <div className="flex items-center justify-between">
-          <h1 className="text-base sm:text-lg lg:text-xl font-semibold">DineFit</h1>
+          <div className="flex items-center">
+            <img 
+              src="/dinefit_logo.svg" 
+              alt="DineFit" 
+              className="h-12 w-12 sm:h-14 sm:w-14 mr-2"
+            />
+            <h1 className="text-base sm:text-lg lg:text-xl font-semibold">DineFit</h1>
+          </div>
           <div className="text-sm">Loading...</div>
         </div>
       </nav>
@@ -32,7 +39,14 @@ const Navbar = () => {
         : 'bg-green-600 text-white'
     }`}>
       <div className="flex items-center justify-between">
-        <h1 className="text-base sm:text-lg lg:text-xl font-semibold">DineFit</h1>
+        <div className="flex items-center">
+          <img 
+            src="/dinefit_logo.svg" 
+            alt="DineFit" 
+            className="h-12 w-12 sm:h-14 sm:w-14 mr-2"
+          />
+          {/* <h1 className="text-base sm:text-lg lg:text-xl font-semibold">DineFit</h1> */}
+        </div>
         <div className="flex space-x-2 sm:space-x-4">
           {user ? (
             <>
