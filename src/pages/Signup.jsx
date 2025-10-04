@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { validatePassword } from "../utils/validation";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Check, X } from "lucide-react";
 import PasswordStrength from "../components/PasswordStrength";
 
 const Signup = () => {
@@ -20,11 +20,26 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  // Add state for password match validation
+  const [passwordsMatch, setPasswordsMatch] = useState(null);
+  const [showPasswordMatch, setShowPasswordMatch] = useState(false);
+
   useEffect(() => {
     if (user) {
       navigate("/dashboard");
     }
   }, [user, navigate]);
+
+  // Add useEffect to check password match in real-time
+  useEffect(() => {
+    if (formData.confirmPassword.length > 0) {
+      setShowPasswordMatch(true);
+      setPasswordsMatch(formData.password === formData.confirmPassword);
+    } else {
+      setShowPasswordMatch(false);
+      setPasswordsMatch(null);
+    }
+  }, [formData.password, formData.confirmPassword]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -185,7 +200,13 @@ const Signup = () => {
                     onChange={handleInputChange}
                     placeholder="Confirm your password"
                     required
-                    className="w-full px-4 py-3 text-lg bg-white/70 backdrop-blur-sm border border-white/30 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 placeholder-gray-400 shadow-lg"
+                    className={`w-full px-4 py-3 text-lg bg-white/70 backdrop-blur-sm border rounded-2xl focus:ring-2 transition-all duration-200 placeholder-gray-400 shadow-lg ${
+                      showPasswordMatch
+                        ? passwordsMatch
+                          ? 'border-green-300 focus:ring-green-500 focus:border-green-500'
+                          : 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                        : 'border-white/30 focus:ring-emerald-500 focus:border-emerald-500'
+                    }`}
                   />
                   <button
                     type="button"
@@ -195,6 +216,24 @@ const Signup = () => {
                     {showPassword2 ? <EyeOff size={20} /> : <Eye size={20} />}
                   </button>
                 </div>
+                {/* Real-time password match validation feedback */}
+                {showPasswordMatch && (
+                  <div className={`mt-2 flex items-center space-x-2 text-sm font-medium transition-all duration-200 ${
+                    passwordsMatch ? 'text-green-600' : 'text-red-600'
+                  }`}>
+                    {passwordsMatch ? (
+                      <>
+                        <Check size={16} className="text-green-600" />
+                        <span>Passwords match</span>
+                      </>
+                    ) : (
+                      <>
+                        <X size={16} className="text-red-600" />
+                        <span>Passwords do not match</span>
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
 
