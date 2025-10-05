@@ -32,7 +32,7 @@ const Navbar = () => {
         : 'bg-green-600 text-white'
     }`}>
       <div className="flex items-center justify-between">
-        <h1 className="text-base sm:text-lg lg:text-xl font-semibold">DineFit</h1>
+        <NavLink className="text-base sm:text-lg lg:text-xl font-semibold" to={user ? "/dashboard" : "/"}>DineFit</NavLink>
         <div className="flex space-x-2 sm:space-x-4">
           {user ? (
             <>
