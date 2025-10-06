@@ -179,34 +179,38 @@ const Recipes = () => {
   return (
     <div className="min-h-[calc(100vh-4rem)] relative overflow-hidden">
       
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
       
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-r from-emerald-200/20 to-teal-300/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute top-1/3 -right-32 w-96 h-96 bg-gradient-to-r from-cyan-200/15 to-blue-300/15 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-r from-emerald-200/20 to-teal-300/20 dark:from-emerald-800/15 dark:to-teal-800/15 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-1/3 -right-32 w-96 h-96 bg-gradient-to-r from-cyan-200/15 to-blue-300/15 dark:from-cyan-800/10 dark:to-blue-800/10 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute -bottom-32 left-1/4 w-72 h-72 bg-gradient-to-r from-teal-200/20 to-emerald-300/20 dark:from-teal-800/15 dark:to-emerald-800/15 rounded-full blur-3xl animate-float-slow"></div>
+        
+        <div className="absolute top-20 right-20 w-8 h-8 bg-gradient-to-r from-emerald-400 to-teal-500 dark:from-emerald-600 dark:to-teal-600 transform rotate-45 animate-spin-slow opacity-10 dark:opacity-20"></div>
+        <div className="absolute bottom-32 left-16 w-6 h-16 bg-gradient-to-b from-cyan-400 to-blue-500 dark:from-cyan-600 dark:to-blue-600 transform -skew-y-12 animate-sway opacity-15 dark:opacity-25"></div>
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         
-        <div className="text-center mb-8 backdrop-blur-sm bg-white/30 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20">
+        <div className="text-center mb-8 backdrop-blur-sm bg-white/30 dark:bg-gray-800/30 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 dark:border-gray-700/20">
           <div className="flex items-center justify-between mb-4">
             <Link 
               to="/dashboard"
-              className="p-2 text-gray-600 hover:text-emerald-600 transition-colors duration-200 backdrop-blur-sm bg-white/50 rounded-xl hover:bg-white/70"
+              className="p-2 text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 backdrop-blur-sm bg-white/50 dark:bg-gray-700/50 rounded-xl hover:bg-white/70 dark:hover:bg-gray-700/70"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </Link>
-            <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
               Recipe Discovery
             </h1>
             <div className="w-9"></div>
           </div>
-          <p className="text-gray-600">Find your perfect meal based on your preferences</p>
+          <p className="text-gray-600 dark:text-gray-300">Find your perfect meal based on your preferences</p>
         </div>
         
-        <div className="backdrop-blur-sm bg-white/40 rounded-3xl p-6 shadow-xl border border-white/30 mb-8">
+        <div className="backdrop-blur-sm bg-white/40 dark:bg-gray-800/40 rounded-3xl p-6 shadow-xl border border-white/30 dark:border-gray-700/30 mb-8">
           
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <div className="flex-1">
@@ -216,7 +220,7 @@ const Recipes = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                className="w-full px-4 py-3 bg-white/70 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                className="w-full px-4 py-3 bg-white/70 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
               />
             </div>
             <button
@@ -235,9 +239,9 @@ const Recipes = () => {
         </div>
         
         {userProfile && (
-          <div className="backdrop-blur-sm bg-gradient-to-r from-emerald-100/50 to-teal-100/50 rounded-2xl p-4 mb-8 border border-emerald-200/30">
-            <h3 className="font-semibold text-emerald-800 mb-2">🎯 Personalized for You</h3>
-            <div className="flex flex-wrap gap-4 text-sm text-emerald-700">
+          <div className="backdrop-blur-sm bg-gradient-to-r from-emerald-100/50 to-teal-100/50 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-2xl p-4 mb-8 border border-emerald-200/30 dark:border-emerald-700/30">
+            <h3 className="font-semibold text-emerald-800 dark:text-emerald-300 mb-2">🎯 Personalized for You</h3>
+            <div className="flex flex-wrap gap-4 text-sm text-emerald-700 dark:text-emerald-300">
               {userProfile.dietaryPreferences && userProfile.dietaryPreferences !== 'None specified' && (
                 <span>Diet: {userProfile.dietaryPreferences}</span>
               )}
@@ -263,8 +267,8 @@ const Recipes = () => {
         {loading && (
           <div className="flex items-center justify-center py-12">
             <div className="text-center">
-              <div className="w-12 h-12 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-600">Discovering delicious recipes...</p>
+              <div className="w-12 h-12 border-4 border-emerald-200 dark:border-emerald-800 border-t-emerald-600 dark:border-t-emerald-400 rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-gray-600 dark:text-gray-300">Discovering delicious recipes...</p>
             </div>
           </div>
         )}
@@ -283,10 +287,10 @@ const Recipes = () => {
         )}
         
         {!loading && recipes.length === 0 && (
-          <div className="text-center py-12">
+          <div className="text-center py-12 backdrop-blur-sm bg-white/30 dark:bg-gray-800/30 rounded-3xl shadow-xl border border-white/20 dark:border-gray-700/20">
             <div className="text-6xl mb-4">🍽️</div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No recipes found</h3>
-            <p className="text-gray-600 mb-6">Try searching with different ingredients or browse all categories</p>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">No recipes found</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">Try searching with different ingredients or browse all categories</p>
             <button
               onClick={getRandomRecipes}
               className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl hover:from-emerald-600 hover:to-teal-600 transition-all duration-200"

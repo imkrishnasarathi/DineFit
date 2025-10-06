@@ -87,7 +87,7 @@ const Signup = () => {
   return (
     <div className="min-h-[calc(100vh-4rem)] relative overflow-hidden">
       {/* Background gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-r from-emerald-200/30 to-teal-300/30 rounded-full blur-3xl animate-float"></div>
         <div className="absolute top-1/3 -right-32 w-96 h-96 bg-gradient-to-r from-cyan-200/25 to-blue-300/25 rounded-full blur-3xl animate-float-delayed"></div>
@@ -98,12 +98,12 @@ const Signup = () => {
 
       {/* Card */}
       <div className="relative z-10 flex items-center justify-center p-4 min-h-[calc(100vh-4rem)]">
-        <div className="w-full max-w-md backdrop-blur-sm bg-white/40 p-8 sm:p-10 lg:p-12 rounded-3xl shadow-2xl border border-white/30">
+        <div className="w-full max-w-md backdrop-blur-sm bg-white/40 dark:bg-gray-800/40 p-8 sm:p-10 lg:p-12 rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30">
           <div className="text-center mb-8">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent mb-3">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent mb-3">
               Join DineFit
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
               Start your personalized fitness journey today
             </p>
             <button onClick={handleGoogleOAuth} className="border-2 border-green-400 rounded-xl px-4 py-2 mt-6 ">continue with google</button>

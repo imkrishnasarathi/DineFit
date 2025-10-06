@@ -5,12 +5,12 @@ import { SiNetlify } from "react-icons/si";
 
 export default function Footer() {
     return (
-        <footer className="mt-10 bg-white/10 backdrop-blur-lg border-t border-white/20 shadow-lg">
+        <footer className="mt-10 bg-white/10 dark:bg-gray-900/10 backdrop-blur-lg border-t border-white/20 dark:border-gray-700/20 shadow-lg">
             <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
 
                 {/* Branding */}
                 <div className="text-center md:text-left max-w-md">
-                    <h2 className="text-3xl font-extrabold text-teal-600 tracking-wide">DineFit</h2>
+                    <h2 className="text-3xl font-extrabold text-teal-600 dark:text-teal-400 tracking-wide">DineFit</h2>
                     <p className="text-gray-700 dark:text-gray-400 mt-3 leading-relaxed">
                         Plan delicious meals with ease.
                         Smart, fast, and personalized recipe discovery.
@@ -26,7 +26,7 @@ export default function Footer() {
                             href="https://github.com/imkrishnasarathi"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-teal-500 transition-colors duration-300"
+                            className="hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-300"
                         >
                             <FaGithub />
                         </a>
@@ -35,7 +35,7 @@ export default function Footer() {
                             href="https://x.com/CodesKae"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-teal-500 transition-colors duration-300"
+                            className="hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-300"
                         >
                             <FaTwitter />
                         </a>
@@ -44,7 +44,7 @@ export default function Footer() {
                             href="https://www.youtube.com/@krishcodes"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-teal-500 transition-colors duration-300"
+                            className="hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-300"
                         >
                             <FaYoutube />
                         </a>
@@ -55,7 +55,7 @@ export default function Footer() {
 
 
             {/* Bottom bar */}
-            <div className="border-t border-white/20 text-center py-4 text-gray-600 dark:text-gray-400 text-sm">
+            <div className="border-t border-white/20 dark:border-gray-700/20 text-center py-4 text-gray-600 dark:text-gray-400 text-sm">
                 © {new Date().getFullYear()} DineFit. All rights reserved. | Built with ❤️ by Krishnasarathi
             </div>
         </footer>
