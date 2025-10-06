@@ -11,6 +11,7 @@ const Navbar = () => {
       console.error("Logout failed:", error);
     }
   };
+
   if (loading) {
     return (
       <nav
@@ -37,7 +38,7 @@ const Navbar = () => {
           : "bg-green-600 text-white"
       }`}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex gap-2 items-center justify-between">
         <h1 className="text-base sm:text-lg lg:text-xl font-semibold">
           DineFit
         </h1>
@@ -45,7 +46,7 @@ const Navbar = () => {
           {user ? (
             <>
               <span
-                className={`text-sm sm:text-base px-2 sm:px-3 py-1 border-2 rounded ${
+                className={`hidden sm:block text-sm sm:text-base px-2 sm:px-3 py-1 border-2 rounded ${
                   isHomePage
                     ? "border-green-500 text-green-700 bg-green-50"
                     : "border-green-400 text-white"
@@ -166,4 +167,5 @@ const Navbar = () => {
     </nav>
   );
 };
-export default Navbar;
+
+export default Navbar
