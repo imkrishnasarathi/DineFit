@@ -299,6 +299,10 @@ export default function MealPlanner() {
       ...prev,
       [mealType]: getSuggestions(value, mealType)
     }));
+    setMealPlan(prev => ({
+      ...prev,
+      [mealType]: value
+    }));
   };
 
   const handleSelectSuggestion = (mealType, dish) => {
@@ -623,6 +627,8 @@ Snacks: ${mealPlan.snacks}
                         type="text"
                         value={value}
                         onChange={(e) => handleCustomDishChange(mealType, e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && setSuggestions(prev => ({ ...prev, [mealType]: [] }))}
+                        onBlur={() => setTimeout(() => setSuggestions(prev => ({ ...prev, [mealType]: [] })), 150)}
                         placeholder={`Add your ${mealType} dish...`}
                         className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                       />
