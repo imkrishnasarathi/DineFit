@@ -95,6 +95,19 @@ class MealLoggingService {
     }
   }
 
+  async getAllMealLogs() {
+    if (this.currentUser) {
+      try {
+        return await userRecipeService.getAllMealLogs(this.currentUser.$id);
+      } catch (error) {
+        console.error('Fetching all meal logs failed, falling back to localStorage:', error);
+        return this.getMealLogsFromLocalStorage();
+      }
+    } else {
+      return this.getMealLogsFromLocalStorage();
+    }
+  }
+
   getMealLogsFromLocalStorage() {
     try {
       const logs = localStorage.getItem(this.storageKey);

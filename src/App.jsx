@@ -10,7 +10,10 @@ import Dashboard from './pages/Dashboard'
 import Settings from './pages/Settings'
 import Recipes from './pages/Recipes'
 import Favorites from './pages/Favorites'
+import Success from './pages/Success'
+import Failure from './pages/Failure'
 import MealPlanner from './pages/MealPlanner'   
+import MealHistory from './pages/MealHistory'
 import './index.css'
 
 function App() {
@@ -24,6 +27,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/failure" element={<Failure />} />
+
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
@@ -44,22 +50,24 @@ function App() {
                 <Favorites />
               </ProtectedRoute>
             } />
- meal-added-branch
-            <Route path="/meal-planner" element={ 
+            <Route path="/meal-history" element={ 
               <ProtectedRoute>
-                <MealPlanner /> 
+                <MealHistory /> 
               </ProtectedRoute>
-            } />  
-
-            <Route path="*" element={ <div className="p-8 text-center">404 - Page Not Found</div> } />
-
-            main
+            } />
+            <Route path="/meal-planner" element={
+              <ProtectedRoute>
+                <MealPlanner />
+              </ProtectedRoute>
+            } />
+              
+            <Route path="*" element={<div className="p-8 text-center">404 - Page Not Found</div>} />
           </Routes>
         </main>
-
         <Footer />
       </AuthProvider>
     </div>
   )
 }
+
 export default App
