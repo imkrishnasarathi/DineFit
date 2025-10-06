@@ -48,25 +48,25 @@ const Dashboard = () => {
   return (
     <div className="min-h-[calc(100vh-4rem)] relative overflow-hidden">
       
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
       
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-r from-emerald-200/20 to-teal-300/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute top-1/3 -right-32 w-96 h-96 bg-gradient-to-r from-cyan-200/15 to-blue-300/15 rounded-full blur-3xl animate-float-delayed"></div>
-        <div className="absolute -bottom-32 left-1/4 w-72 h-72 bg-gradient-to-r from-teal-200/20 to-emerald-300/20 rounded-full blur-3xl animate-float-slow"></div>
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-r from-emerald-200/20 to-teal-300/20 dark:from-emerald-800/15 dark:to-teal-800/15 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-1/3 -right-32 w-96 h-96 bg-gradient-to-r from-cyan-200/15 to-blue-300/15 dark:from-cyan-800/10 dark:to-blue-800/10 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute -bottom-32 left-1/4 w-72 h-72 bg-gradient-to-r from-teal-200/20 to-emerald-300/20 dark:from-teal-800/15 dark:to-emerald-800/15 rounded-full blur-3xl animate-float-slow"></div>
         
-        <div className="absolute top-20 right-20 w-8 h-8 bg-gradient-to-r from-emerald-400 to-teal-500 transform rotate-45 animate-spin-slow opacity-10"></div>
-        <div className="absolute bottom-32 left-16 w-6 h-16 bg-gradient-to-b from-cyan-400 to-blue-500 transform -skew-y-12 animate-sway opacity-15"></div>
+        <div className="absolute top-20 right-20 w-8 h-8 bg-gradient-to-r from-emerald-400 to-teal-500 dark:from-emerald-600 dark:to-teal-600 transform rotate-45 animate-spin-slow opacity-10 dark:opacity-20"></div>
+        <div className="absolute bottom-32 left-16 w-6 h-16 bg-gradient-to-b from-cyan-400 to-blue-500 dark:from-cyan-600 dark:to-blue-600 transform -skew-y-12 animate-sway opacity-15 dark:opacity-25"></div>
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         
-        <div className="text-center mb-8 backdrop-blur-sm bg-white/30 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20">
+        <div className="text-center mb-8 backdrop-blur-sm bg-white/30 dark:bg-gray-800/30 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 dark:border-gray-700/20">
           <div className="flex justify-between items-start mb-4">
             <div className="flex-1"></div>
             <Link
               to="/settings"
-              className="p-2 text-gray-600 hover:text-emerald-600 transition-colors duration-200 backdrop-blur-sm bg-white/50 rounded-xl hover:bg-white/70"
+              className="p-2 text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 backdrop-blur-sm bg-white/50 dark:bg-gray-700/50 rounded-xl hover:bg-white/70 dark:hover:bg-gray-700/70"
               title="Settings"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -75,21 +75,21 @@ const Dashboard = () => {
               </svg>
             </Link>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent mb-3">
-            Welcome back, {user?.name || 'User'}! <span className="text-white">🍽️</span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent mb-3">
+            Welcome back, {user?.name || 'User'}! <span className="text-white dark:text-gray-200">🍽️</span>
           </h1>
           {isGuest && (
-            <div className="mb-4 inline-flex items-center px-3 py-1 bg-blue-100/80 backdrop-blur-sm border border-blue-200/50 text-blue-700 rounded-full text-sm font-medium">
+            <div className="mb-4 inline-flex items-center px-3 py-1 bg-blue-100/80 dark:bg-blue-900/50 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
               Guest Mode  
             </div>
           )}
-          <p className="text-xl sm:text-2xl text-gray-700 mb-4">
+          <p className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 mb-4">
             Discover recipes tailored to your taste
           </p>
-          <div className="flex justify-center items-center space-x-6 text-sm text-gray-600 backdrop-blur-sm bg-white/50 rounded-2xl p-4 inline-flex">
+          <div className="flex justify-center items-center space-x-6 text-sm text-gray-600 dark:text-gray-400 backdrop-blur-sm bg-white/50 dark:bg-gray-700/50 rounded-2xl p-4 inline-flex">
             <span className="flex items-center">
               <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
               Meals/Day: {userPreferences.mealsPerDay}
@@ -108,12 +108,12 @@ const Dashboard = () => {
         </div>
         
         {!hasProfile && !showProfileSetup && !firstTimeProfile && (
-          <div className="mb-8 backdrop-blur-sm bg-gradient-to-r from-emerald-100/50 to-teal-100/50 rounded-3xl p-6 sm:p-8 shadow-xl border border-emerald-200/30">
+          <div className="mb-8 backdrop-blur-sm bg-gradient-to-r from-emerald-100/50 to-teal-100/50 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-3xl p-6 sm:p-8 shadow-xl border border-emerald-200/30 dark:border-emerald-700/30">
             <div className="text-center">
-              <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-3">
+              <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent mb-3">
                 Complete Your Profile 🎯
               </h2>
-              <p className="text-lg text-gray-700 mb-6">
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
                 Help us personalize your recipe recommendations by sharing your food preferences, allergies, and cooking habits. It takes just 2 minutes!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -127,7 +127,7 @@ const Dashboard = () => {
                   onClick={() => {  setShowProfileSetup(false);
                                     setfirstTimeProfile(true);
                                     localStorage.setItem('skippedProfileSetup', 'true');}}
-                  className="px-6 py-4 text-gray-600 bg-white/70 backdrop-blur-sm rounded-2xl hover:bg-white/90 transition-all duration-200 border border-gray-200"
+                  className="px-6 py-4 text-gray-600 dark:text-gray-300 bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm rounded-2xl hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all duration-200 border border-gray-200 dark:border-gray-600"
                 >
                   Maybe Later
                 </button>
@@ -138,36 +138,36 @@ const Dashboard = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
           
-          <div className="backdrop-blur-sm bg-white/40 p-6 sm:p-8 rounded-3xl shadow-xl border border-white/30 hover:shadow-2xl transition-all duration-300">
+          <div className="backdrop-blur-sm bg-white/40 dark:bg-gray-800/40 p-6 sm:p-8 rounded-3xl shadow-xl border border-white/30 dark:border-gray-700/30 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Favorite Cuisines</h3>
+              <h3 className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">Favorite Cuisines</h3>
               <span className="text-3xl">🌮</span>
             </div>
             <div className="space-y-2">
-              <p className="text-lg font-semibold text-gray-800">{userPreferences.favoriteCuisines}</p>
-              <p className="text-sm text-gray-600">Discover new recipes from your preferred cuisines</p>
+              <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">{userPreferences.favoriteCuisines}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Discover new recipes from your preferred cuisines</p>
             </div>
           </div>
           
-          <div className="backdrop-blur-sm bg-white/40 p-6 sm:p-8 rounded-3xl shadow-xl border border-white/30 hover:shadow-2xl transition-all duration-300">
+          <div className="backdrop-blur-sm bg-white/40 dark:bg-gray-800/40 p-6 sm:p-8 rounded-3xl shadow-xl border border-white/30 dark:border-gray-700/30 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Dietary Preferences</h3>
+              <h3 className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">Dietary Preferences</h3>
               <span className="text-3xl">🥗</span>
             </div>
             <div className="space-y-2">
-              <p className="text-lg font-semibold text-gray-800">{userPreferences.dietaryPreferences}</p>
-              <p className="text-sm text-gray-600">Recipes that match your lifestyle</p>
+              <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">{userPreferences.dietaryPreferences}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Recipes that match your lifestyle</p>
             </div>
           </div>
           
-          <div className="backdrop-blur-sm bg-white/40 p-6 sm:p-8 rounded-3xl shadow-xl border border-white/30 hover:shadow-2xl transition-all duration-300">
+          <div className="backdrop-blur-sm bg-white/40 dark:bg-gray-800/40 p-6 sm:p-8 rounded-3xl shadow-xl border border-white/30 dark:border-gray-700/30 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Cooking Time</h3>
+              <h3 className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">Cooking Time</h3>
               <span className="text-3xl">⏰</span>
             </div>
             <div className="space-y-2">
-              <p className="text-lg font-semibold text-gray-800">{userPreferences.cookingTime}</p>
-              <p className="text-sm text-gray-600">Recipes that fit your schedule</p>
+              <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">{userPreferences.cookingTime}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Recipes that fit your schedule</p>
             </div>
           </div>
         </div>
@@ -193,16 +193,16 @@ const Dashboard = () => {
           </Link>
         </div>
         
-        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 max-w-5xl mx-auto">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 sm:p-8 max-w-5xl mx-auto">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Recent Meals</h2>
-            <div className="text-sm text-gray-500">Last 10 meals</div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">Recent Meals</h2>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Last 10 meals</div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {recentMeals.map((meal) => (
-              <div key={meal.id} className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200 border border-gray-100">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                  <span className="text-green-600 text-xl">
+              <div key={meal.id} className="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 border border-gray-100 dark:border-gray-600">
+                <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="text-green-600 dark:text-green-400 text-xl">
                     {meal.type === 'Breakfast' ? '🌅' : 
                      meal.type === 'Lunch' ? '☀️' : 
                      meal.type === 'Dinner' ? '🌙' : 
@@ -211,11 +211,11 @@ const Dashboard = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between mb-1">
-                    <h3 className="font-semibold text-gray-900 truncate">{meal.name}</h3>
-                    <span className="font-medium text-emerald-600 text-sm ml-2">{meal.type}</span>
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 truncate">{meal.name}</h3>
+                    <span className="font-medium text-emerald-600 dark:text-emerald-400 text-sm ml-2">{meal.type}</span>
                   </div>
-                  <p className="text-sm text-gray-500 mb-1">{meal.time}</p>
-                  <p className="text-xs text-gray-400 truncate">{meal.ingredients}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{meal.time}</p>
+                  <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{meal.ingredients}</p>
                 </div>
               </div>
             ))}

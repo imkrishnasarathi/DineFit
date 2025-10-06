@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
+import { ThemeProvider } from './contexts/ThemeContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -20,52 +21,54 @@ function App() {
   console.log('App component rendering...');
   return (
     <div className="App">
-      <AuthProvider>
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/success" element={<Success />} />
-            <Route path="/failure" element={<Failure />} />
+      <ThemeProvider>
+        <AuthProvider>
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/success" element={<Success />} />
+              <Route path="/failure" element={<Failure />} />
 
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } />
-            <Route path="/settings" element={
-              <ProtectedRoute>
-                <Settings />
-              </ProtectedRoute>
-            } />
-            <Route path="/recipes" element={
-              <ProtectedRoute>
-                <Recipes />
-              </ProtectedRoute>
-            } />
-            <Route path="/favorites" element={
-              <ProtectedRoute>
-                <Favorites />
-              </ProtectedRoute>
-            } />
-            <Route path="/meal-history" element={ 
-              <ProtectedRoute>
-                <MealHistory /> 
-              </ProtectedRoute>
-            } />
-            <Route path="/meal-planner" element={
-              <ProtectedRoute>
-                <MealPlanner />
-              </ProtectedRoute>
-            } />
-              
-            <Route path="*" element={<div className="p-8 text-center">404 - Page Not Found</div>} />
-          </Routes>
-        </main>
-        <Footer />
-      </AuthProvider>
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+              <Route path="/settings" element={
+                <ProtectedRoute>
+                  <Settings />
+                </ProtectedRoute>
+              } />
+              <Route path="/recipes" element={
+                <ProtectedRoute>
+                  <Recipes />
+                </ProtectedRoute>
+              } />
+              <Route path="/favorites" element={
+                <ProtectedRoute>
+                  <Favorites />
+                </ProtectedRoute>
+              } />
+              <Route path="/meal-history" element={ 
+                <ProtectedRoute>
+                  <MealHistory /> 
+                </ProtectedRoute>
+              } />
+              <Route path="/meal-planner" element={
+                <ProtectedRoute>
+                  <MealPlanner />
+                </ProtectedRoute>
+              } />
+                
+              <Route path="*" element={<div className="p-8 text-center">404 - Page Not Found</div>} />
+            </Routes>
+          </main>
+          <Footer />
+        </AuthProvider>
+      </ThemeProvider>
     </div>
   )
 }

@@ -196,13 +196,25 @@ body {
   border-radius: 2px;
 }
 
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #10b981, #14b8a6);
   border-radius: 2px;
 }
 
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #34d399, #2dd4bf);
+}
+
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #059669, #0d9488);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #10b981, #14b8a6);
 }
 
 

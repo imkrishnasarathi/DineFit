@@ -405,13 +405,13 @@ Snacks: ${mealPlan.snacks}
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent mb-4">
             🍽️ Your Personal Meal Planner
           </h1>
-          <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
             Create your perfect meal plan based on your dietary preferences
           </p>
         </div>
@@ -423,29 +423,29 @@ Snacks: ${mealPlan.snacks}
   if (!activePlan) return null;
 
   return (
-    <div className="mb-8 p-6 bg-white/90 border-4 border-emerald-500 rounded-3xl shadow-2xl">
+    <div className="mb-8 p-6 bg-white/90 dark:bg-gray-800/90 border-4 border-emerald-500 dark:border-emerald-400 rounded-3xl shadow-2xl">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-emerald-700">
+        <h2 className="text-2xl md:text-3xl font-bold text-emerald-700 dark:text-emerald-400">
           🌟 Active Meal Plan
         </h2>
-        <span className="px-3 py-1 text-sm font-semibold text-white bg-emerald-600 rounded-full">
+        <span className="px-3 py-1 text-sm font-semibold text-white bg-emerald-600 dark:bg-emerald-500 rounded-full">
           Active
         </span>
       </div>
 
-      <p className="text-gray-600 mb-6">Diet Type: {activePlan.diet}</p>
+      <p className="text-gray-600 dark:text-gray-300 mb-6">Diet Type: {activePlan.diet}</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {Object.entries(activePlan.plan).map(([mealType, dish]) => (
-          <div key={mealType} className="bg-emerald-50/80 rounded-xl p-6 flex flex-col items-center shadow-lg hover:shadow-2xl transition-shadow">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center text-2xl mb-3">
+          <div key={mealType} className="bg-emerald-50/80 dark:bg-emerald-900/30 rounded-xl p-6 flex flex-col items-center shadow-lg hover:shadow-2xl transition-shadow">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-800 dark:to-teal-800 flex items-center justify-center text-2xl mb-3">
               {mealType === 'breakfast' && '🌅'}
               {mealType === 'lunch' && '🌞'}
               {mealType === 'dinner' && '🌙'}
               {mealType === 'snacks' && '🍎'}
             </div>
-            <h4 className="font-semibold capitalize text-emerald-800 mb-2">{mealType}</h4>
-            <p className="text-gray-700 text-center mb-2">{dish}</p>
+            <h4 className="font-semibold capitalize text-emerald-800 dark:text-emerald-300 mb-2">{mealType}</h4>
+            <p className="text-gray-700 dark:text-gray-300 text-center mb-2">{dish}</p>
             {activePlan.images && activePlan.images[mealType] && (
               <img
                 src={activePlan.images[mealType]}
@@ -464,7 +464,7 @@ Snacks: ${mealPlan.snacks}
           <Collapsible 
             open={isOpen}
             onOpenChange={setIsOpen}
-            className="backdrop-blur-sm bg-white/60 rounded-3xl p-8 shadow-xl border border-white/50 transition-all duration-300 ease-in-out"
+            className="backdrop-blur-sm bg-white/60 dark:bg-gray-800/60 rounded-3xl p-8 shadow-xl border border-white/50 dark:border-gray-700/50 transition-all duration-300 ease-in-out"
           >
             <div className="flex justify-between items-center mb-6">
               <CollapsibleTrigger asChild>
@@ -473,7 +473,7 @@ Snacks: ${mealPlan.snacks}
                   size="lg"
                   className="flex items-center gap-2 hover:bg-transparent p-0"
                 >
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
                     Recent Meal Plans {savedPlans.length > 0 && `(${savedPlans.length})`}
                   </h2>
                   <ChevronDown
@@ -488,7 +488,7 @@ Snacks: ${mealPlan.snacks}
                   type="date"
                   value={searchDate}
                   onChange={(e) => setSearchDate(e.target.value)}
-                  className="p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="p-2 rounded-md border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                 />
                 {savedPlans.length > 0 && (
                   <Button
@@ -512,11 +512,11 @@ Snacks: ${mealPlan.snacks}
                   .map((plan, index) => (
                     <div
                       key={index}
-                      className="bg-white/80 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
+                      className="bg-white/80 dark:bg-gray-700/80 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
                     >
                       <div className="flex justify-between items-start mb-4">
                         <div>
-                          <h3 className="text-lg font-semibold text-emerald-700">
+                          <h3 className="text-lg font-semibold text-emerald-700 dark:text-emerald-400">
                             {new Date(plan.date).toLocaleDateString('en-US', {
                               weekday: 'long',
                               year: 'numeric',
@@ -524,7 +524,7 @@ Snacks: ${mealPlan.snacks}
                               day: 'numeric'
                             })}
                           </h3>
-                          <p className="text-gray-600">Diet Type: {plan.diet}</p>
+                          <p className="text-gray-600 dark:text-gray-300">Diet Type: {plan.diet}</p>
                         </div>
                         <div className="flex gap-2">
                           <Button
@@ -553,9 +553,9 @@ Snacks: ${mealPlan.snacks}
 
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {Object.entries(plan.plan).map(([mealType, dish]) => (
-                          <div key={mealType} className="bg-emerald-50/50 rounded-lg p-4">
-                            <h4 className="font-medium capitalize text-emerald-800 mb-2">{mealType}</h4>
-                            <p className="text-gray-700">{dish}</p>
+                          <div key={mealType} className="bg-emerald-50/50 dark:bg-emerald-900/30 rounded-lg p-4">
+                            <h4 className="font-medium capitalize text-emerald-800 dark:text-emerald-300 mb-2">{mealType}</h4>
+                            <p className="text-gray-700 dark:text-gray-300">{dish}</p>
                             {plan.images && plan.images[mealType] && (
                               <img
                                 src={plan.images[mealType]}
@@ -570,7 +570,7 @@ Snacks: ${mealPlan.snacks}
                   ))}
 
                 {savedPlans.length === 0 ? (
-                  <div className="text-center text-gray-500 py-8">
+                  <div className="text-center text-gray-500 dark:text-gray-400 py-8">
                     No saved meal plans yet. Start by generating your first plan!
                   </div>
                 ) : savedPlans.length > 3 && (
@@ -587,8 +587,8 @@ Snacks: ${mealPlan.snacks}
           </Collapsible>
 
           {/* Generate New Plan Section */}
-          <div className="backdrop-blur-sm bg-white/60 rounded-3xl p-8 shadow-xl border border-white/50">
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-6">
+          <div className="backdrop-blur-sm bg-white/60 dark:bg-gray-800/60 rounded-3xl p-8 shadow-xl border border-white/50 dark:border-gray-700/50">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent mb-6">
               Create New Meal Plan
             </h2>
 
@@ -615,7 +615,7 @@ Snacks: ${mealPlan.snacks}
               {Object.entries(customDishes).map(([mealType, value]) => (
                 <div key={mealType} className="relative">
                   <div className="mb-2">
-                    <h3 className="text-lg font-semibold capitalize bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+                    <h3 className="text-lg font-semibold capitalize bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent mb-2">
                       Custom {mealType}
                     </h3>
                     <div className="relative">
@@ -624,10 +624,10 @@ Snacks: ${mealPlan.snacks}
                         value={value}
                         onChange={(e) => handleCustomDishChange(mealType, e.target.value)}
                         placeholder={`Add your ${mealType} dish...`}
-                        className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                        className="w-full p-2 rounded-md border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                       />
                       {suggestions[mealType].length > 0 && (
-                        <div className="absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg border border-gray-200 max-h-64 overflow-y-auto">
+                        <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-700 rounded-md shadow-lg border border-gray-200 dark:border-gray-600 max-h-64 overflow-y-auto">
                           {suggestions[mealType].map((suggestion, index) => {
                             // Highlight the matched text
                             const lowerSuggestion = suggestion.toLowerCase();
@@ -647,13 +647,13 @@ Snacks: ${mealPlan.snacks}
                               <div
                                 key={index}
                                 onClick={() => handleSelectSuggestion(mealType, suggestion)}
-                                className="px-4 py-2 hover:bg-emerald-50 cursor-pointer text-gray-700 flex items-center justify-between group"
+                                className="px-4 py-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 cursor-pointer text-gray-700 dark:text-gray-300 flex items-center justify-between group"
                               >
                                 <span>
                                   {startIndex >= 0 ? (
                                     <>
                                       {parts[0]}
-                                      <span className="bg-emerald-100 font-medium">{parts[1]}</span>
+                                      <span className="bg-emerald-100 dark:bg-emerald-800 font-medium">{parts[1]}</span>
                                       {parts[2]}
                                     </>
                                   ) : suggestion}
@@ -665,7 +665,7 @@ Snacks: ${mealPlan.snacks}
                             );
                           })}
                           {suggestions[mealType].length === 8 && (
-                            <div className="px-4 py-2 text-sm text-gray-500 bg-gray-50 border-t">
+                            <div className="px-4 py-2 text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-600 border-t dark:border-gray-500">
                               Type more to see more specific suggestions
                             </div>
                           )}
@@ -694,17 +694,17 @@ Snacks: ${mealPlan.snacks}
                     <Card key={mealType} className="transform hover:-translate-y-1 transition-transform duration-300">
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between mb-4">
-                          <h2 className="text-xl font-semibold capitalize bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                          <h2 className="text-xl font-semibold capitalize bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
                             {mealType}
                           </h2>
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-800 dark:to-teal-800 flex items-center justify-center">
                             {mealType === 'breakfast' && '🌅'}
                             {mealType === 'lunch' && '🌞'}
                             {mealType === 'dinner' && '🌙'}
                             {mealType === 'snacks' && '🍎'}
                           </div>
                         </div>
-                        <p className="text-gray-700 mb-4">{dish}</p>
+                        <p className="text-gray-700 dark:text-gray-300 mb-4">{dish}</p>
                         {mealImages[mealType] && (
                           <img
                             src={mealImages[mealType]}
@@ -757,8 +757,8 @@ Snacks: ${mealPlan.snacks}
             )}
             {isImageUploadOpen && (
               <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-                <div className="bg-white rounded-xl p-6 max-w-md w-full">
-                  <h3 className="text-lg font-semibold mb-4">
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-md w-full shadow-2xl">
+                  <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
                     Add Image for {selectedMealType}
                   </h3>
                   <ImageUpload onImageSelect={handleImageSelect} />

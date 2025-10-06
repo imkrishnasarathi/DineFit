@@ -24,7 +24,7 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
   };
   return (
     <div 
-      className="backdrop-blur-sm bg-white/40 rounded-2xl shadow-lg border border-white/30 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer overflow-hidden group"
+      className="backdrop-blur-sm bg-white/40 dark:bg-gray-800/40 rounded-2xl shadow-lg border border-white/30 dark:border-gray-700/30 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer overflow-hidden group"
       onClick={() => onClick?.(recipe)}
     >
       
@@ -44,12 +44,12 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
               ? 'bg-red-500 text-white' 
               : isSaved 
               ? 'bg-green-500 text-white' 
-              : 'bg-white/70 text-gray-600 hover:bg-white/90 hover:text-red-500'
+              : 'bg-white/70 dark:bg-gray-700/70 text-gray-600 dark:text-gray-300 hover:bg-white/90 dark:hover:bg-gray-700/90 hover:text-red-500'
           }`}
           title={isFavorited ? 'Remove from favorites' : isSaved ? 'Added to favorites!' : 'Add to favorites'}
         >
           {isLoading ? (
-            <div className="w-4 h-4 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+            <div className="w-4 h-4 border-2 border-gray-300 dark:border-gray-600 border-t-gray-600 dark:border-t-gray-400 rounded-full animate-spin"></div>
           ) : isSaved ? (
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -69,9 +69,9 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
         
         {recipe.difficulty && (
           <div className={`absolute bottom-3 left-3 px-2 py-1 text-xs font-medium rounded-full ${
-            recipe.difficulty === 'Easy' ? 'bg-green-100 text-green-800' :
-            recipe.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
-            'bg-red-100 text-red-800'
+            recipe.difficulty === 'Easy' ? 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300' :
+            recipe.difficulty === 'Medium' ? 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300' :
+            'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300'
           }`}>
             {recipe.difficulty}
           </div>
@@ -79,10 +79,10 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
       </div>
       
       <div className="p-4">
-        <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-2 group-hover:text-emerald-600 transition-colors duration-200">
+        <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 mb-2 line-clamp-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
           {recipe.name}
         </h3>
-        <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
+        <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-3">
           <span className="flex items-center">
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -105,13 +105,13 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
             {recipe.tags.slice(0, 3).map((tag, index) => (
               <span 
                 key={index}
-                className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
+                className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full"
               >
                 {tag}
               </span>
             ))}
             {recipe.tags.length > 3 && (
-              <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+              <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full">
                 +{recipe.tags.length - 3}
               </span>
             )}

@@ -101,24 +101,24 @@ const Login = () => {
     return (
         <div className="min-h-[calc(100vh-4rem)] relative overflow-hidden">
 
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
 
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-r from-emerald-200/30 to-teal-300/30 rounded-full blur-3xl animate-float"></div>
-                <div className="absolute top-1/2 -right-32 w-96 h-96 bg-gradient-to-r from-cyan-200/25 to-blue-300/25 rounded-full blur-3xl animate-float-delayed"></div>
-                <div className="absolute -bottom-32 left-1/3 w-72 h-72 bg-gradient-to-r from-teal-200/30 to-emerald-300/30 rounded-full blur-3xl animate-float-slow"></div>
+                <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-r from-emerald-200/30 to-teal-300/30 dark:from-emerald-800/20 dark:to-teal-800/20 rounded-full blur-3xl animate-float"></div>
+                <div className="absolute top-1/2 -right-32 w-96 h-96 bg-gradient-to-r from-cyan-200/25 to-blue-300/25 dark:from-cyan-800/15 dark:to-blue-800/15 rounded-full blur-3xl animate-float-delayed"></div>
+                <div className="absolute -bottom-32 left-1/3 w-72 h-72 bg-gradient-to-r from-teal-200/30 to-emerald-300/30 dark:from-teal-800/20 dark:to-emerald-800/20 rounded-full blur-3xl animate-float-slow"></div>
 
-                <div className="absolute top-20 right-20 w-12 h-12 bg-gradient-to-r from-emerald-400 to-teal-500 transform rotate-45 animate-spin-slow opacity-15"></div>
-                <div className="absolute bottom-32 left-16 w-8 h-24 bg-gradient-to-b from-cyan-400 to-blue-500 transform -skew-y-12 animate-sway opacity-20"></div>
+                <div className="absolute top-20 right-20 w-12 h-12 bg-gradient-to-r from-emerald-400 to-teal-500 dark:from-emerald-600 dark:to-teal-600 transform rotate-45 animate-spin-slow opacity-15 dark:opacity-25"></div>
+                <div className="absolute bottom-32 left-16 w-8 h-24 bg-gradient-to-b from-cyan-400 to-blue-500 dark:from-cyan-600 dark:to-blue-600 transform -skew-y-12 animate-sway opacity-20 dark:opacity-30"></div>
             </div>
 
             <div className="relative z-10 flex items-center justify-center p-4 min-h-[calc(100vh-4rem)]">
-                <div className="w-full max-w-md backdrop-blur-sm bg-white/40 p-8 sm:p-10 lg:p-12 rounded-3xl shadow-2xl border border-white/30">
+                <div className="w-full max-w-md backdrop-blur-sm bg-white/40 dark:bg-gray-800/40 p-8 sm:p-10 lg:p-12 rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30">
                     <div className="text-center mb-8">
-                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent mb-3">
+                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent mb-3">
                             Welcome Back
                         </h1>
-                        <p className="text-lg sm:text-xl text-gray-600">Sign in to continue your fitness journey</p>
+                        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">Sign in to continue your fitness journey</p>
 
                         {!isOnline && (
                             <div className="mt-4 p-3 bg-orange-100/80 backdrop-blur-sm border border-orange-300 text-orange-700 rounded-xl">
