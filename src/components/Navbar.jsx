@@ -20,7 +20,10 @@ const Navbar = () => {
           : 'bg-green-600 text-white'
       }`}>
         <div className="flex items-center justify-between">
-          <h1 className="text-base sm:text-lg lg:text-xl font-semibold">DineFit</h1>
+          <div className="flex items-center">
+            <img src="/dine-fit-logo.svg" alt="DineFit" className="h-12 w-12 sm:h-16 sm:w-16" />
+            <span className="ml-2 text-base sm:text-lg lg:text-xl font-semibold">DineFit</span>
+          </div>
           <div className="text-sm">Loading...</div>
         </div>
       </nav>
@@ -33,8 +36,11 @@ const Navbar = () => {
         : 'bg-green-600 text-white'
     }`}>
       <div className="flex gap-2 items-center justify-between">
-        <h1 className="text-base sm:text-lg lg:text-xl font-semibold">DineFit</h1>
-        <div className="flex space-x-2 items-center sm:space-x-4">
+        <div className="flex items-center">
+          <img src="/dine-fit-logo.svg" alt="DineFit" className="h-12 w-100 sm:h-16 sm:w-100" />
+          {/* <span className="ml-2 text-base sm:text-lg lg:text-xl font-semibold">DineFit</span> */}
+        </div>
+        <div className="flex space-x-2 sm:space-x-4">
           {user ? (
             <>
               <span className={`hidden sm:block text-sm sm:text-base px-2 sm:px-3 py-1 border-2 rounded ${
@@ -116,4 +122,5 @@ const Navbar = () => {
     </nav>
   )
 }
+
 export default Navbar
