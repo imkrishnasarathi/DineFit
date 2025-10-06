@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { validatePassword } from "../utils/validation";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, CheckCircle2, XCircle } from "lucide-react";
 import PasswordStrength from "../components/PasswordStrength";
+import { account } from "../appwriteClient";
 
 const Signup = () => {
   const { signup, user } = useAuth();
@@ -13,6 +14,7 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [passwordsMatch, setPasswordsMatch] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,6 +27,17 @@ const Signup = () => {
       navigate("/dashboard");
     }
   }, [user, navigate]);
+
+  useEffect(() => {
+    // Real-time password matching validation
+    if (formData.confirmPassword === "") {
+      setPasswordsMatch(null);
+    } else if (formData.password === formData.confirmPassword) {
+      setPasswordsMatch(true);
+    } else {
+      setPasswordsMatch(false);
+    }
+  }, [formData.password, formData.confirmPassword]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -61,6 +74,16 @@ const Signup = () => {
     }
   };
 
+
+  const handleGoogleOAuth = () => {
+    console.log("clicked")
+    account.createOAuth2Session(
+      "google",
+      `${process.env.BASE_URL}/success`,
+      `${process.env.BASE_URL}/failure`,
+    )
+  }
+
   return (
     <div className="min-h-[calc(100vh-4rem)] relative overflow-hidden">
       {/* Background gradients */}
@@ -83,6 +106,7 @@ const Signup = () => {
             <p className="text-lg sm:text-xl text-gray-600">
               Start your personalized fitness journey today
             </p>
+            <button onClick={handleGoogleOAuth} className="border-2 border-green-400 rounded-xl px-4 py-2 mt-6 ">continue with google</button>
           </div>
 
           {/* Form */}
@@ -185,7 +209,13 @@ const Signup = () => {
                     onChange={handleInputChange}
                     placeholder="Confirm your password"
                     required
-                    className="w-full px-4 py-3 text-lg bg-white/70 backdrop-blur-sm border border-white/30 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 placeholder-gray-400 shadow-lg"
+                    className={`w-full px-4 py-3 text-lg bg-white/70 backdrop-blur-sm border rounded-2xl focus:ring-2 transition-all duration-200 placeholder-gray-400 shadow-lg ${
+                      passwordsMatch === null
+                        ? "border-white/30 focus:ring-emerald-500 focus:border-emerald-500"
+                        : passwordsMatch
+                        ? "border-green-300 focus:ring-green-500 focus:border-green-500"
+                        : "border-red-300 focus:ring-red-500 focus:border-red-500"
+                    }`}
                   />
                   <button
                     type="button"
@@ -195,6 +225,25 @@ const Signup = () => {
                     {showPassword2 ? <EyeOff size={20} /> : <Eye size={20} />}
                   </button>
                 </div>
+                {passwordsMatch !== null && (
+                  <div className="mt-2 flex items-center gap-2">
+                    {passwordsMatch ? (
+                      <>
+                        <CheckCircle2 size={16} className="text-green-600" />
+                        <span className="text-sm font-medium text-green-600">
+                          Passwords match
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <XCircle size={16} className="text-red-600" />
+                        <span className="text-sm font-medium text-red-600">
+                          Passwords do not match
+                        </span>
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
 
