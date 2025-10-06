@@ -33,30 +33,31 @@
   }
 
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+  /* Dark mode tuned for comfortable contrast and green accent */
+  --background: 210 15% 9%;        /* very dark blue-gray */
+  --foreground: 210 20% 96%;       /* near-white for text */
+  --card: 210 18% 12%;             /* slightly lighter than background */
+  --card-foreground: 210 20% 96%;
+  --popover: 210 17% 11%;
+  --popover-foreground: 210 20% 96%;
+  --primary: 162 68% 40%;         /* vibrant green for actions */
+  --primary-foreground: 210 20% 8%;
+  --secondary: 210 12% 22%;       /* muted secondary surfaces */
+  --secondary-foreground: 210 20% 96%;
+  --muted: 210 10% 26%;
+  --muted-foreground: 210 14% 66%;
+  --accent: 162 64% 38%;          /* accent same family as primary */
+  --accent-foreground: 210 20% 96%;
+  --destructive: 0 70% 45%;
+  --destructive-foreground: 210 20% 96%;
+  --border: 210 12% 18%;
+  --input: 210 12% 20%;
+  --ring: 162 60% 45%;
+  --chart-1: 200 80% 55%;
+  --chart-2: 160 70% 45%;
+  --chart-3: 40 90% 55%;
+  --chart-4: 260 60% 60%;
+  --chart-5: 330 70% 55%;
   }
 }
 

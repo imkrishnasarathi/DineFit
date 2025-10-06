@@ -109,12 +109,12 @@ export const getPasswordStrengthLabel = (score) => {
 export const getPasswordStrengthColor = (score) => {
     switch (score) {
         case 0:
-        case 1: return 'text-red-500';
-        case 2: return 'text-orange-500';
-        case 3: return 'text-yellow-500';
-        case 4: return 'text-blue-500';
-        case 5: return 'text-green-500';
-        case 6: return 'text-green-600';
-        default: return 'text-gray-500';
+        case 1: return 'text-[hsl(var(--destructive))]';
+        case 2: return 'text-[hsl(var(--accent))]';
+        case 3: return 'text-[hsl(var(--muted))]';
+        case 4: return 'text-[hsl(var(--primary))]';
+        case 5: return 'text-[hsl(var(--accent))]';
+        case 6: return 'text-[hsl(var(--primary))]';
+        default: return 'text-[hsl(var(--muted))]';
     }
 };

@@ -64,14 +64,14 @@ export default function ImageUpload({ onImageSelect }) {
       />
       <button
         type="button"
-        className="px-4 py-2 bg-emerald-600 text-white rounded shadow hover:bg-emerald-700"
+        className="px-4 py-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded shadow hover:brightness-95"
         onClick={() => fileInputRef.current.click()}
       >
         Upload from device
       </button>
       <button
         type="button"
-        className="px-4 py-2 bg-teal-600 text-white rounded shadow hover:bg-teal-700"
+        className="px-4 py-2 bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] rounded shadow hover:brightness-95"
         onClick={startCamera}
       >
         Use Camera
@@ -83,14 +83,14 @@ export default function ImageUpload({ onImageSelect }) {
           <div className="flex gap-2 mt-2">
             <button
               type="button"
-              className="px-4 py-2 bg-emerald-600 text-white rounded shadow hover:bg-emerald-700"
+              className="px-4 py-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded shadow hover:brightness-95"
               onClick={capturePhoto}
             >
               Capture Photo
             </button>
             <button
               type="button"
-              className="px-4 py-2 bg-gray-400 text-white rounded shadow hover:bg-gray-500"
+              className="px-4 py-2 bg-[hsl(var(--muted))] text-[hsl(var(--card-foreground))] rounded shadow hover:brightness-95"
               onClick={stopCamera}
             >
               Cancel

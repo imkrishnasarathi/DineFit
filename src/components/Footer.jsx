@@ -5,13 +5,13 @@ import { SiNetlify } from "react-icons/si";
 
 export default function Footer() {
     return (
-        <footer className="mt-10 bg-white/10 backdrop-blur-lg border-t border-white/20 shadow-lg">
+    <footer className="mt-10 bg-[hsl(var(--card))]/30 backdrop-blur-lg border-t border-[hsl(var(--border))] shadow-lg">
             <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
 
                 {/* Branding */}
                 <div className="text-center md:text-left max-w-md">
                     <h2 className="text-3xl font-extrabold text-teal-600 tracking-wide">DineFit</h2>
-                    <p className="text-gray-700 dark:text-gray-400 mt-3 leading-relaxed">
+                    <p className="text-[hsl(var(--muted-foreground))] mt-3 leading-relaxed">
                         Plan delicious meals with ease.
                         Smart, fast, and personalized recipe discovery.
                     </p>
@@ -19,7 +19,7 @@ export default function Footer() {
 
                 {/* Social Links */}
                 <div className="text-center md:text-left">
-                    <h3 className="font-semibold text-gray-900 dark:text-gray-300 mb-4 text-lg">Follow Me</h3>
+                    <h3 className="font-semibold text-[hsl(var(--card-foreground))] mb-4 text-lg">Follow Me</h3>
                     <div className="flex justify-center md:justify-start gap-6 text-2xl">
 
                         <a
@@ -55,7 +55,7 @@ export default function Footer() {
 
 
             {/* Bottom bar */}
-            <div className="border-t border-white/20 text-center py-4 text-gray-600 dark:text-gray-400 text-sm">
+            <div className="border-t border-[hsl(var(--border))] text-center py-4 text-[hsl(var(--muted-foreground))] text-sm">
                 © {new Date().getFullYear()} DineFit. All rights reserved. | Built with ❤️ by Krishnasarathi
             </div>
         </footer>

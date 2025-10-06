@@ -110,30 +110,30 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
     const renderStep1 = () => (
         <div className="space-y-6">
             <div className="text-center mb-8">
-                <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[hsl(var(--card-foreground))] mb-2">
                     Basic Information
                 </h2>
-                <p className="text-gray-600">Just a few details to personalize your recipes</p>
+                <p className="text-[hsl(var(--muted-foreground))]">Just a few details to personalize your recipes</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                    <label className="block text-sm font-medium text-[hsl(var(--card-foreground))] mb-2">Age</label>
                     <input
                         type="number"
                         min="13"
                         max="120"
                         value={formData.age}
                         onChange={(e) => handleInputChange('age', e.target.value)}
-                        className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                        className="w-full px-4 py-3 bg-[hsl(var(--input))] backdrop-blur-sm border border-[hsl(var(--border))] rounded-xl focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                         placeholder="Enter your age"
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                    <label className="block text-sm font-medium text-[hsl(var(--card-foreground))] mb-2">Gender</label>
                     <select
                         value={formData.gender}
                         onChange={(e) => handleInputChange('gender', e.target.value)}
-                        className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                        className="w-full px-4 py-3 bg-[hsl(var(--input))] backdrop-blur-sm border border-[hsl(var(--border))] rounded-xl focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                     >
                         <option value="">Select gender</option>
                         <option value="male">Male</option>
@@ -147,25 +147,25 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
     const renderStep2 = () => (
         <div className="space-y-6">
             <div className="text-center mb-8">
-                <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[hsl(var(--card-foreground))] mb-2">
                     Food Preferences & Restrictions
                 </h2>
-                <p className="text-gray-600">Help us recommend the perfect recipes for you</p>
+                <p className="text-[hsl(var(--muted-foreground))]">Help us recommend the perfect recipes for you</p>
             </div>
             <div className="space-y-6">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Food Allergies & Intolerances</label>
+                    <label className="block text-sm font-medium text-[hsl(var(--card-foreground))] mb-2">Food Allergies & Intolerances</label>
                     <textarea
                         value={formData.allergies}
                         onChange={(e) => handleInputChange('allergies', e.target.value)}
                         placeholder="e.g., peanuts, shellfish, dairy, gluten, eggs..."
                         rows="3"
-                        className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
+                        className="w-full px-4 py-3 bg-[hsl(var(--input))] backdrop-blur-sm border border-[hsl(var(--border))] rounded-xl focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent resize-none"
                     />
-                    <p className="text-xs text-gray-500 mt-1">Separate multiple items with commas</p>
+                    <p className="text-xs text-[hsl(var(--muted-foreground))] mt-1">Separate multiple items with commas</p>
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-4">Dietary Preferences</label>
+                    <label className="block text-sm font-medium text-[hsl(var(--card-foreground))] mb-4">Dietary Preferences</label>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {dietaryOptions.map((option) => (
                             <div
@@ -173,8 +173,8 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
                                 onClick={() => handleArrayToggle('dietaryPreferences', option)}
                                 className={`p-3 rounded-lg border cursor-pointer transition-all duration-200 text-center ${
                                     formData.dietaryPreferences.includes(option)
-                                        ? 'border-green-500 bg-green-50/70 backdrop-blur-sm text-green-700'
-                                        : 'border-gray-200 bg-white/50 backdrop-blur-sm hover:border-green-300'
+                                        ? 'border-[hsl(var(--primary))] bg-[hsl(var(--card))]/70 backdrop-blur-sm text-[hsl(var(--primary))]'
+                                        : 'border-[hsl(var(--border))] bg-[hsl(var(--card))]/50 backdrop-blur-sm hover:border-[hsl(var(--primary))]'
                                 }`}
                             >
                                 <span className="text-sm font-medium">{option}</span>
@@ -183,18 +183,18 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
                     </div>
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Foods You Dislike</label>
+                    <label className="block text-sm font-medium text-[hsl(var(--card-foreground))] mb-2">Foods You Dislike</label>
                     <textarea
                         value={formData.dislikedFoods}
                         onChange={(e) => handleInputChange('dislikedFoods', e.target.value)}
                         placeholder="e.g., mushrooms, seafood, spicy food, cilantro..."
                         rows="3"
-                        className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
+                        className="w-full px-4 py-3 bg-[hsl(var(--input))] backdrop-blur-sm border border-[hsl(var(--border))] rounded-xl focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent resize-none"
                     />
-                    <p className="text-xs text-gray-500 mt-1">Separate multiple items with commas</p>
+                    <p className="text-xs text-[hsl(var(--muted-foreground))] mt-1">Separate multiple items with commas</p>
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-4">Favorite Cuisines</label>
+                    <label className="block text-sm font-medium text-[hsl(var(--muted-foreground))] mb-4">Favorite Cuisines</label>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {cuisineOptions.map((cuisine) => (
                             <div
@@ -202,8 +202,8 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
                                 onClick={() => handleArrayToggle('favoriteCuisines', cuisine)}
                                 className={`p-3 rounded-lg border cursor-pointer transition-all duration-200 text-center ${
                                     formData.favoriteCuisines.includes(cuisine)
-                                        ? 'border-emerald-500 bg-emerald-50/70 backdrop-blur-sm text-emerald-700'
-                                        : 'border-gray-200 bg-white/50 backdrop-blur-sm hover:border-emerald-300'
+                                        ? 'border-[hsl(var(--primary))] bg-[hsl(var(--card))]/70 backdrop-blur-sm text-[hsl(var(--primary))]'
+                                        : 'border-[hsl(var(--border))] bg-[hsl(var(--card))]/50 backdrop-blur-sm hover:border-[hsl(var(--primary))]'
                                 }`}
                             >
                                 <span className="text-sm font-medium">{cuisine}</span>
@@ -217,18 +217,18 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
     const renderStep3 = () => (
         <div className="space-y-6">
             <div className="text-center mb-8">
-                <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[hsl(var(--card-foreground))] mb-2">
                     Cooking Preferences
                 </h2>
-                <p className="text-gray-600">Tell us about your cooking style and preferences</p>
+                <p className="text-[hsl(var(--muted-foreground))]">Tell us about your cooking style and preferences</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Meals per Day</label>
+                    <label className="block text-sm font-medium text-[hsl(var(--muted-foreground))] mb-2">Meals per Day</label>
                     <select
                         value={formData.mealsPerDay}
                         onChange={(e) => handleInputChange('mealsPerDay', e.target.value)}
-                        className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                        className="w-full px-4 py-3 bg-[hsl(var(--input))] backdrop-blur-sm border border-[hsl(var(--border))] rounded-xl focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                     >
                         <option value="2">2 meals</option>
                         <option value="3">3 meals</option>
@@ -238,11 +238,11 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
                     </select>
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Cooking Time Preference</label>
+                    <label className="block text-sm font-medium text-[hsl(var(--muted-foreground))] mb-2">Cooking Time Preference</label>
                     <select
                         value={formData.cookingTime}
                         onChange={(e) => handleInputChange('cookingTime', e.target.value)}
-                        className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                        className="w-full px-4 py-3 bg-[hsl(var(--input))] backdrop-blur-sm border border-[hsl(var(--border))] rounded-xl focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
                     >
                         <option value="">Select cooking time</option>
                         <option value="quick">Quick & Easy (15 min or less)</option>
@@ -256,17 +256,17 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
     );
     return (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl border border-white/30 w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+        <div className="bg-[hsl(var(--card)/0.9)] backdrop-blur-md rounded-3xl shadow-2xl border border-[hsl(var(--border))] w-full max-w-4xl max-h-[90vh] overflow-y-auto">
                 <div className="p-6 sm:p-8 lg:p-10">
                     
                     <div className="mb-8">
-                        <div className="flex justify-between text-sm text-gray-600 mb-2">
+                        <div className="flex justify-between text-sm text-[hsl(var(--muted-foreground))] mb-2">
                             <span>Step {currentStep} of 3</span>
                             <span>{Math.round((currentStep / 3) * 100)}% Complete</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="w-full bg-[hsl(var(--muted))] rounded-full h-2">
                             <div 
-                                className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full transition-all duration-300"
+                                className="bg-[hsl(var(--primary))] h-2 rounded-full transition-all duration-300"
                                 style={{ width: `${(currentStep / 3) * 100}%` }}
                             ></div>
                         </div>
@@ -276,12 +276,12 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
                     {currentStep === 2 && renderStep2()}
                     {currentStep === 3 && renderStep3()}
                     
-                    <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-200">
+                    <div className="flex justify-between items-center mt-8 pt-6 border-t border-[hsl(var(--border))]">
                         <div className="flex gap-3">
                             {currentStep > 1 && (
                                 <button
                                     onClick={handleBack}
-                                    className="px-6 py-3 text-gray-600 bg-white/70 backdrop-blur-sm rounded-xl hover:bg-white/90 transition-all duration-200 border border-gray-200"
+                                    className="px-6 py-3 text-[hsl(var(--muted-foreground))] bg-[hsl(var(--card))]/70 backdrop-blur-sm rounded-xl hover:bg-[hsl(var(--card))]/90 transition-all duration-200 border border-[hsl(var(--border))]"
                                 >
                                     Back
                                 </button>
@@ -289,7 +289,7 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
                             {isFirstTime && (
                                 <button
                                     onClick={onSkip}
-                                    className="px-6 py-3 text-gray-500 hover:text-gray-700 transition-colors duration-200"
+                                    className="px-6 py-3 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--card-foreground))] transition-colors duration-200"
                                 >
                                     Skip for now
                                 </button>
@@ -298,7 +298,7 @@ const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
                         <button
                             onClick={handleNext}
                             disabled={!isStepValid() || isLoading}
-                            className="px-8 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-xl hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl"
+                            className="px-8 py-3 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-semibold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:brightness-105"
                         >
                             {isLoading ? (
                                 <div className="flex items-center">
