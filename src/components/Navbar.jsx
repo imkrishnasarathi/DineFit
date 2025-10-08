@@ -92,9 +92,11 @@ const Navbar = () => {
       }`}
     >
       <div className="flex items-center justify-between">
-        <h1 className="text-base sm:text-lg lg:text-xl font-semibold">
-          DineFit
-        </h1>
+        <Navlink to={user ? "/dashboard" : "/"}>
+          <h1 className="text-base sm:text-lg lg:text-xl font-semibold">
+            DineFit
+          </h1>
+        </Navlink>
         <div className="flex space-x-2 sm:space-x-4">
           {user ? (
 
