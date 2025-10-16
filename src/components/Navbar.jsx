@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -7,16 +6,7 @@ const Navbar = () => {
   const { user, logout, loading } = useAuth();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-
   const [menuOpen, setMenuOpen] = useState(false);
-
-
-import { NavLink, useLocation } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-const Navbar = () => {
-  const { user, logout, loading } = useAuth();
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
 
   const handleLogout = async () => {
     try {
@@ -26,7 +16,6 @@ const Navbar = () => {
       console.error("Logout failed:", error);
     }
   };
-
 
   const navClasses = `sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 shadow-md transition-all duration-300 ${
     isHomePage
@@ -46,6 +35,19 @@ const Navbar = () => {
       ? 'text-gray-700 hover:bg-green-100 hover:text-green-700'
       : 'text-white hover:bg-green-700';
 
+  if (loading) {
+    return (
+      <nav className={navClasses}>
+        <div className="flex items-center justify-between">
+          <h1 className="text-base sm:text-lg lg:text-xl font-semibold">
+            DineFit
+          </h1>
+          <div className="text-sm">Loading...</div>
+        </div>
+      </nav>
+    );
+  }
+
   return (
     <nav className={navClasses}>
       <div className="flex items-center justify-between">
@@ -61,81 +63,25 @@ const Navbar = () => {
         </button>
 
         <div className="hidden sm:flex space-x-4 items-center">
-          {loading ? (
-            <div className="text-sm">Loading...</div>
-          ) : user ? (
-
-  if (loading) {
-    return (
-      <nav
-        className={`sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 shadow-md transition-all duration-300 ${
-          isHomePage
-            ? "bg-white/80 backdrop-blur-md text-gray-800 border-b border-gray-200/20"
-            : "bg-green-600 text-white"
-        }`}
-      >
-        <div className="flex items-center justify-between">
-          <h1 className="text-base sm:text-lg lg:text-xl font-semibold">
-            DineFit
-          </h1>
-          <div className="text-sm">Loading...</div>
-        </div>
-      </nav>
-    );
-  }
-  return (
-    <nav
-      className={`sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 shadow-md transition-all duration-300 ${
-        isHomePage
-          ? "bg-white/80 backdrop-blur-md text-gray-800 border-b border-gray-200/20"
-          : "bg-green-600 text-white"
-      }`}
-    >
-      <div className="flex items-center justify-between">
-        <h1 className="text-base sm:text-lg lg:text-xl font-semibold">
-          DineFit
-        </h1>
-        <div className="flex space-x-2 sm:space-x-4">
           {user ? (
-
             <>
               <span
                 className={`text-sm sm:text-base px-2 sm:px-3 py-1 border-2 rounded ${
                   isHomePage
-
                     ? 'border-green-500 text-green-700 bg-green-50'
                     : 'border-green-400 text-white'
                 }`}
-
-                    ? "border-green-500 text-green-700 bg-green-50"
-                    : "border-green-400 text-white"
-                }`}
-              >
-                Welcome, {user.name || user.email}
-              </span>
-              <NavLink
-                to="/dashboard"
-                className={({ isActive }) =>
-                  `text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                    isActive
-                      ? isHomePage
-                        ? "bg-green-600 text-white"
-                        : "bg-green-800 text-white"
-                      : isHomePage
-                      ? "text-gray-700 hover:bg-green-100 hover:text-green-700"
-                      : "text-white hover:bg-green-700"
-                  }`
-                }
-
               >
                 Welcome, {user.name || user.email}
               </span>
               <NavLink to="/dashboard" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
                 Dashboard
               </NavLink>
-
               <NavLink to="/meal-planner" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
                 Meal Planner
+              </NavLink>
+              <NavLink to="/about" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
+                About
               </NavLink>
               <button
                 onClick={handleLogout}
@@ -143,41 +89,6 @@ const Navbar = () => {
                   isHomePage
                     ? 'text-gray-700 hover:bg-red-100 hover:text-red-700'
                     : 'text-white hover:bg-green-700'
-
-              <NavLink
-                to="/meal-planner"
-                className={({ isActive }) =>
-                  `text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                    isActive
-                      ? isHomePage
-                        ? "bg-green-600 text-white"
-                        : "bg-green-800 text-white"
-                      : isHomePage
-                      ? "text-gray-700 hover:bg-green-100 hover:text-green-700"
-                      : "text-white hover:bg-green-700"
-                  }`
-                }
-              >
-                Meal Planner
-              </NavLink>
-              <NavLink
-                to="/about"
-                className={`text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                  isHomePage
-                    ? "text-gray-700 hover:bg-green-100 hover:text-green-700"
-                    : "text-white hover:bg-green-700"
-                }`}
-              >
-                About
-              </NavLink>
-
-              <button
-                onClick={handleLogout}
-                className={`text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                  isHomePage
-                    ? "text-gray-700 hover:bg-red-100 hover:text-red-700"
-                    : "text-white hover:bg-green-700"
-
                 }`}
               >
                 Logout
@@ -185,64 +96,17 @@ const Navbar = () => {
             </>
           ) : (
             <>
-
-              <NavLink to="/" className={`${baseLink} ${isHomePage ? 'text-gray-700 hover:bg-green-100 hover:text-green-700' : 'text-white hover:bg-green-700'}`}>
+              <NavLink to="/" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
                 Home
+              </NavLink>
+              <NavLink to="/about" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
+                About
               </NavLink>
               <NavLink to="/login" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
                 Login
               </NavLink>
               {!isHomePage && (
                 <NavLink to="/signup" className={({ isActive }) => `${baseLink} ${isActive ? 'bg-green-800 text-white hover:bg-green-700' : 'text-white hover:bg-green-700'}`}>
-
-              <NavLink
-                to="/"
-                className={`text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                  isHomePage
-                    ? "text-gray-700 hover:bg-green-100 hover:text-green-700"
-                    : "text-white hover:bg-green-700"
-                }`}
-              >
-                Home
-              </NavLink>
-              <NavLink
-                to="/about"
-                className={`text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                  isHomePage
-                    ? "text-gray-700 hover:bg-green-100 hover:text-green-700"
-                    : "text-white hover:bg-green-700"
-                }`}
-              >
-                About
-              </NavLink>
-              <NavLink
-                to="/login"
-                className={({ isActive }) =>
-                  `text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                    isActive
-                      ? isHomePage
-                        ? "bg-green-600 text-white"
-                        : "bg-green-800 text-white"
-                      : isHomePage
-                      ? "text-gray-700 hover:bg-green-100 hover:text-green-700"
-                      : "text-white hover:bg-green-700"
-                  }`
-                }
-              >
-                Login
-              </NavLink>
-              {!isHomePage && (
-                <NavLink
-                  to="/signup"
-                  className={({ isActive }) =>
-                    `text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                      isActive
-                        ? "bg-green-800 text-white hover:bg-green-700"
-                        : "text-white hover:bg-green-700"
-                    }`
-                  }
-                >
-
                   Signup
                 </NavLink>
               )}
@@ -256,9 +120,7 @@ const Navbar = () => {
           menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        {loading ? (
-          <div className="text-sm">Loading...</div>
-        ) : user ? (
+        {user ? (
           <>
             <span
               className={`text-sm px-2 py-1 ${
@@ -275,6 +137,9 @@ const Navbar = () => {
             <NavLink to="/meal-planner" onClick={() => setMenuOpen(false)} className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
               Meal Planner
             </NavLink>
+            <NavLink to="/about" onClick={() => setMenuOpen(false)} className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
+              About
+            </NavLink>
             <button
               onClick={handleLogout}
               className={`border-2 border-white ${baseLink} ${
@@ -288,8 +153,11 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <NavLink to="/" onClick={() => setMenuOpen(false)} className={`${baseLink} ${isHomePage ? 'text-gray-700 hover:bg-green-100 hover:text-green-700' : 'text-white hover:bg-green-700'}`}>
+            <NavLink to="/" onClick={() => setMenuOpen(false)} className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
               Home
+            </NavLink>
+            <NavLink to="/about" onClick={() => setMenuOpen(false)} className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
+              About
             </NavLink>
             <NavLink to="/login" onClick={() => setMenuOpen(false)} className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
               Login

@@ -12,7 +12,7 @@ import Recipes from "./pages/Recipes";
 import Favorites from "./pages/Favorites";
 import Success from "./pages/Success";
 import Failure from "./pages/Failure";
-import MealPlanner from "./pages/MealPlanner";
+import MealPlanner from "./pages/EnhancedMealPlanner";
 import MealHistory from "./pages/MealHistory";
 import About from "./pages/About";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
