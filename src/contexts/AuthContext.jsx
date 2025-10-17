@@ -335,11 +335,11 @@ export const AuthProvider = ({ children }) => {
     };
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+            <div className="min-h-screen flex items-center justify-center bg-[hsl(var(--background))] text-[hsl(var(--foreground))]">
                 <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-                    <p className="text-lg text-gray-600 mb-2">{loadingMessage}</p>
-                    <p className="text-sm text-gray-500">If this takes too long, please refresh the page</p>
+                    <div className="animate-spin rounded-full h-12 w-12 border border-[hsl(var(--border))] border-t-[hsl(var(--primary))] mx-auto mb-4"></div>
+                    <p className="text-lg font-medium text-[hsl(var(--foreground))] mb-2">{loadingMessage}</p>
+                    <p className="text-sm text-[hsl(var(--muted-foreground))]">If this takes too long, please refresh the page</p>
                 </div>
             </div>
         );

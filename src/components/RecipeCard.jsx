@@ -4,9 +4,13 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
+  const [imageSrc, setImageSrc] = useState(recipe.image || '/dine-fit-logo.svg');
   useEffect(() => {
     setIsFavorited(mealLoggingService.isFavorited(recipe.id));
   }, [recipe.id]);
+  useEffect(() => {
+    setImageSrc(recipe.image || '/dine-fit-logo.svg');
+  }, [recipe.image]);
   const handleSave = async (e) => {
     e.stopPropagation(); // Prevent card click
     setIsLoading(true);
@@ -24,16 +28,21 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
   };
   return (
     <div 
-      className="backdrop-blur-sm bg-white/40 rounded-2xl shadow-lg border border-white/30 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer overflow-hidden group"
+      className="backdrop-blur-sm bg-[hsl(var(--card)/0.6)] rounded-2xl shadow-lg border border-[hsl(var(--border))] hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer overflow-hidden group"
       onClick={() => onClick?.(recipe)}
     >
       
       <div className="relative h-48 overflow-hidden">
         <img
-          src={recipe.image}
-          alt={recipe.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          src={imageSrc}
+          alt={recipe.name || 'Recipe image'}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 bg-[hsl(var(--card))]"
           loading="lazy"
+          onError={(e) => {
+            // Prevent infinite loop if placeholder somehow fails
+            if (e.currentTarget.src.includes('/dine-fit-logo.svg')) return;
+            setImageSrc('/dine-fit-logo.svg');
+          }}
         />
         
         <button
@@ -41,15 +50,15 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
           disabled={isLoading}
           className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-sm transition-all duration-200 ${
             isFavorited 
-              ? 'bg-red-500 text-white' 
+              ? 'bg-[hsl(var(--destructive))] text-[hsl(var(--destructive-foreground))]' 
               : isSaved 
-              ? 'bg-green-500 text-white' 
-              : 'bg-white/70 text-gray-600 hover:bg-white/90 hover:text-red-500'
+              ? 'bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]' 
+              : 'bg-[hsl(var(--card))] text-[hsl(var(--card-foreground))] hover:bg-[hsl(var(--popover))] hover:text-[hsl(var(--popover-foreground))]'
           }`}
           title={isFavorited ? 'Remove from favorites' : isSaved ? 'Added to favorites!' : 'Add to favorites'}
         >
           {isLoading ? (
-            <div className="w-4 h-4 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+            <div className="w-4 h-4 border-2 border-[hsl(var(--border))] border-t-[hsl(var(--primary))] rounded-full animate-spin"></div>
           ) : isSaved ? (
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -62,16 +71,16 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
         </button>
         
         {recipe.category && (
-          <div className="absolute top-3 left-3 px-2 py-1 bg-emerald-500 text-white text-xs font-medium rounded-full">
+          <div className="absolute top-3 left-3 px-2 py-1 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] text-xs font-medium rounded-full">
             {recipe.category}
           </div>
         )}
         
         {recipe.difficulty && (
           <div className={`absolute bottom-3 left-3 px-2 py-1 text-xs font-medium rounded-full ${
-            recipe.difficulty === 'Easy' ? 'bg-green-100 text-green-800' :
-            recipe.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
-            'bg-red-100 text-red-800'
+            recipe.difficulty === 'Easy' ? 'bg-[hsl(var(--card))] text-[hsl(var(--muted-foreground))]' :
+            recipe.difficulty === 'Medium' ? 'bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))]' :
+            'bg-[hsl(var(--destructive))] text-[hsl(var(--destructive-foreground))]'
           }`}>
             {recipe.difficulty}
           </div>
@@ -79,10 +88,10 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
       </div>
       
       <div className="p-4">
-        <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-2 group-hover:text-emerald-600 transition-colors duration-200">
+        <h3 className="font-bold text-lg text-[hsl(var(--card-foreground))] mb-2 line-clamp-2 group-hover:text-[hsl(var(--primary))] transition-colors duration-200">
           {recipe.name}
         </h3>
-        <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
+        <div className="flex items-center justify-between text-sm text-[hsl(var(--muted-foreground))] mb-3">
           <span className="flex items-center">
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -105,20 +114,20 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
             {recipe.tags.slice(0, 3).map((tag, index) => (
               <span 
                 key={index}
-                className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
+                className="px-2 py-1 bg-[hsl(var(--card))] text-[hsl(var(--muted-foreground))] text-xs rounded-full"
               >
                 {tag}
               </span>
             ))}
             {recipe.tags.length > 3 && (
-              <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+              <span className="px-2 py-1 bg-[hsl(var(--card))] text-[hsl(var(--muted-foreground))] text-xs rounded-full">
                 +{recipe.tags.length - 3}
               </span>
             )}
           </div>
         )}
         
-        <button className="w-full mt-3 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-medium rounded-xl hover:from-emerald-600 hover:to-teal-600 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg">
+  <button className="w-full mt-3 px-4 py-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-medium rounded-xl hover:brightness-105 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg">
           View Recipe
         </button>
       </div>

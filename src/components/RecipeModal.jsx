@@ -40,7 +40,7 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+  <div className="bg-[hsl(var(--card))] rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-[hsl(var(--border))]">
         
         <div className="relative">
           <img
@@ -50,7 +50,7 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
           />
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-colors duration-200"
+            className="absolute top-4 right-4 p-2 bg-[hsl(var(--card))] backdrop-blur-sm rounded-full hover:bg-[hsl(var(--popover))] transition-colors duration-200"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -62,9 +62,9 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
             <button
               onClick={handleFavoriteToggle}
               className={`px-4 py-2 rounded-full transition-all duration-200 flex items-center space-x-2 ${
-                isFavorited 
-                  ? 'bg-red-500 text-white hover:bg-red-600' 
-                  : 'bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-white'
+                isFavorited
+                  ? 'bg-[hsl(var(--destructive))] text-[hsl(var(--destructive-foreground))] hover:brightness-95'
+                  : 'bg-[hsl(var(--card))] backdrop-blur-sm text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--popover))]'
               }`}
             >
               <svg className="w-4 h-4" fill={isFavorited ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
@@ -77,10 +77,10 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
               onClick={handleCookRecipe}
               disabled={isCooked}
               className={`px-4 py-2 rounded-full transition-all duration-200 flex items-center space-x-2 ${
-                isCooked
-                  ? 'bg-green-500 text-white'
-                  : 'bg-orange-500 text-white hover:bg-orange-600'
-              }`}
+                  isCooked
+                    ? 'bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]'
+                    : 'bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] hover:brightness-95'
+                }`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isCooked ? (
@@ -95,11 +95,11 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
           
         </div>
         
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-16rem)]">
+  <div className="p-6 overflow-y-auto max-h-[calc(90vh-16rem)] bg-[hsl(var(--card))] text-[hsl(var(--card-foreground))]">
           
           <div className="mb-6">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{recipe.name}</h2>
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
+            <h2 className="text-3xl font-bold text-[hsl(var(--card-foreground))] mb-4">{recipe.name}</h2>
+            <div className="flex flex-wrap gap-4 text-sm text-[hsl(var(--muted-foreground))] mb-4">
               {recipeDetails?.prepTime && (
                 <span className="flex items-center">
                   <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,12 +125,12 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
                 </span>
               )}
               {recipe.category && (
-                <span className="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-medium">
+                <span className="px-3 py-1 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded-full text-xs font-medium">
                   {recipe.category}
                 </span>
               )}
               {recipe.area && (
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                <span className="px-3 py-1 bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))] rounded-full text-xs font-medium">
                   {recipe.area}
                 </span>
               )}
@@ -141,7 +141,7 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
                 {recipe.tags.map((tag, index) => (
                   <span 
                     key={index}
-                    className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
+                    className="px-2 py-1 bg-[hsl(var(--card))] text-[hsl(var(--muted-foreground))] text-xs rounded-full"
                   >
                     #{tag}
                   </span>
@@ -150,24 +150,24 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
             )}
           </div>
           
-          {isLoading && (
+                {isLoading && (
             <div className="flex items-center justify-center py-12">
               <div className="text-center">
-                <div className="w-8 h-8 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin mx-auto mb-4"></div>
-                <p className="text-gray-600">Loading recipe details...</p>
+                <div className="w-8 h-8 border-4 border-[hsl(var(--muted))] border-t-[hsl(var(--primary))] rounded-full animate-spin mx-auto mb-4"></div>
+                <p className="text-[hsl(var(--muted-foreground))]">Loading recipe details...</p>
               </div>
             </div>
           )}
           
-          {recipeDetails && (
+        {recipeDetails && (
             <>
-              <div className="flex border-b border-gray-200 mb-6">
+        <div className="flex border-b border-[hsl(var(--border))] mb-6">
                 <button
                   onClick={() => setActiveTab('ingredients')}
                   className={`px-4 py-2 font-medium transition-colors duration-200 ${
                     activeTab === 'ingredients'
-                      ? 'text-emerald-600 border-b-2 border-emerald-600'
-                      : 'text-gray-600 hover:text-emerald-600'
+          ? 'text-[hsl(var(--primary))] border-b-2 border-[hsl(var(--primary))]'
+          : 'text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]'
                   }`}
                 >
                   Ingredients
@@ -176,8 +176,8 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
                   onClick={() => setActiveTab('instructions')}
                   className={`px-4 py-2 font-medium transition-colors duration-200 ${
                     activeTab === 'instructions'
-                      ? 'text-emerald-600 border-b-2 border-emerald-600'
-                      : 'text-gray-600 hover:text-emerald-600'
+          ? 'text-[hsl(var(--primary))] border-b-2 border-[hsl(var(--primary))]'
+          : 'text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]'
                   }`}
                 >
                   Instructions
@@ -186,19 +186,19 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
               
               {activeTab === 'ingredients' && (
                 <div className="space-y-3">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Ingredients</h3>
+                  <h3 className="text-xl font-semibold text-[hsl(var(--card-foreground))] mb-4">Ingredients</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {recipeDetails.ingredients?.length > 0 ? (
                       recipeDetails.ingredients.map((ingredient, index) => (
-                        <div key={index} className="flex items-center p-3 bg-gray-50 rounded-xl">
+                        <div key={index} className="flex items-center p-3 bg-[hsl(var(--card))]/60 rounded-xl">
                           <div className="w-3 h-3 bg-emerald-500 rounded-full mr-3"></div>
-                          <span className="text-gray-800">
+                          <span className="text-[hsl(var(--card-foreground))]">
                             {ingredient.original || `${ingredient.amount || ''} ${ingredient.unit || ''} ${ingredient.name || ''}`.trim()}
                           </span>
                         </div>
                       ))
                     ) : (
-                      <div className="col-span-2 text-center text-gray-500 py-8">
+                      <div className="col-span-2 text-center text-[hsl(var(--muted-foreground))] py-8">
                         No ingredients available for this recipe.
                       </div>
                     )}
@@ -207,22 +207,22 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
               )}
               {activeTab === 'instructions' && (
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Instructions</h3>
+                  <h3 className="text-xl font-semibold text-[hsl(var(--card-foreground))] mb-4">Instructions</h3>
                   <div className="space-y-4">
                     {Array.isArray(recipeDetails.instructions) && recipeDetails.instructions.length > 0 ? (
                       recipeDetails.instructions.map((instruction, index) => (
-                        <div key={index} className="flex gap-4 p-4 bg-gray-50 rounded-xl">
-                          <div className="w-8 h-8 bg-emerald-500 text-white rounded-full flex items-center justify-center font-semibold text-sm flex-shrink-0">
+                        <div key={index} className="flex gap-4 p-4 bg-[hsl(var(--card))]/60 rounded-xl">
+                          <div className="w-8 h-8 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded-full flex items-center justify-center font-semibold text-sm flex-shrink-0">
                             {instruction.number || index + 1}
                           </div>
-                          <div className="text-gray-800 leading-relaxed">
+                          <div className="text-[hsl(var(--card-foreground))] leading-relaxed">
                             {instruction.step || instruction}
                           </div>
                         </div>
                       ))
                     ) : (
-                      <div className="bg-gray-50 rounded-xl p-6">
-                        <div className="text-gray-800 leading-relaxed">
+                      <div className="bg-[hsl(var(--card))]/60 rounded-xl p-6">
+                        <div className="text-[hsl(var(--card-foreground))] leading-relaxed">
                           {typeof recipeDetails.instructions === 'string' 
                             ? recipeDetails.instructions 
                             : 'Instructions not available for this recipe.'
@@ -235,11 +235,11 @@ const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
                   {recipe.videoUrl && (
                     <div className="mt-6">
                       <a
-                        href={recipe.videoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-colors duration-200"
-                      >
+                          href={recipe.videoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center px-6 py-3 bg-[hsl(var(--destructive))] text-[hsl(var(--destructive-foreground))] rounded-xl hover:brightness-95 transition-colors duration-200"
+                        >
                         <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
                         </svg>

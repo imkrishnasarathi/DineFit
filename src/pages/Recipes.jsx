@@ -179,7 +179,7 @@ const Recipes = () => {
   return (
     <div className="min-h-[calc(100vh-4rem)] relative overflow-hidden">
       
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100"></div>
+  <div className="absolute inset-0 bg-[hsl(var(--background))]"></div>
       
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-r from-emerald-200/20 to-teal-300/20 rounded-full blur-3xl animate-float"></div>
@@ -188,11 +188,11 @@ const Recipes = () => {
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         
-        <div className="text-center mb-8 backdrop-blur-sm bg-white/30 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20">
+  <div className="text-center mb-8 backdrop-blur-sm bg-[hsl(var(--card))]/30 rounded-3xl p-6 sm:p-8 shadow-xl border border-[hsl(var(--border))]/20">
           <div className="flex items-center justify-between mb-4">
             <Link 
               to="/dashboard"
-              className="p-2 text-gray-600 hover:text-emerald-600 transition-colors duration-200 backdrop-blur-sm bg-white/50 rounded-xl hover:bg-white/70"
+              className="p-2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors duration-200 backdrop-blur-sm bg-[hsl(var(--card))]/50 rounded-xl hover:bg-[hsl(var(--card))]/70"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -203,10 +203,10 @@ const Recipes = () => {
             </h1>
             <div className="w-9"></div>
           </div>
-          <p className="text-gray-600">Find your perfect meal based on your preferences</p>
+          <p className="text-[hsl(var(--muted-foreground))]">Find your perfect meal based on your preferences</p>
         </div>
         
-        <div className="backdrop-blur-sm bg-white/40 rounded-3xl p-6 shadow-xl border border-white/30 mb-8">
+  <div className="backdrop-blur-sm bg-[hsl(var(--card))]/50 rounded-3xl p-6 shadow-xl border border-[hsl(var(--border))] mb-8">
           
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <div className="flex-1">
@@ -216,18 +216,18 @@ const Recipes = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                className="w-full px-4 py-3 bg-white/70 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                className="w-full px-4 py-3 bg-[hsl(var(--input))] border border-[hsl(var(--border))] rounded-xl focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-transparent"
               />
             </div>
             <button
               onClick={handleSearch}
-              className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl hover:from-emerald-600 hover:to-teal-600 transition-all duration-200 whitespace-nowrap"
+              className="px-6 py-3 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded-xl hover:brightness-95 transition-all duration-200 whitespace-nowrap"
             >
               🔍 Search
             </button>
             <button
               onClick={getRandomRecipes}
-              className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-200 whitespace-nowrap"
+              className="px-6 py-3 bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] rounded-xl hover:brightness-95 transition-all duration-200 whitespace-nowrap"
             >
               🎲 Random
             </button>
@@ -262,9 +262,9 @@ const Recipes = () => {
         
         {loading && (
           <div className="flex items-center justify-center py-12">
-            <div className="text-center">
-              <div className="w-12 h-12 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-600">Discovering delicious recipes...</p>
+               <div className="text-center">
+              <div className="w-12 h-12 border-4 border-[hsl(var(--muted))] border-t-[hsl(var(--primary))] rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-[hsl(var(--muted-foreground))]">Discovering delicious recipes...</p>
             </div>
           </div>
         )}
@@ -285,11 +285,11 @@ const Recipes = () => {
         {!loading && recipes.length === 0 && (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">🍽️</div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No recipes found</h3>
-            <p className="text-gray-600 mb-6">Try searching with different ingredients or browse all categories</p>
+            <h3 className="text-xl font-semibold text-[hsl(var(--card-foreground))] mb-2">No recipes found</h3>
+            <p className="text-[hsl(var(--muted-foreground))] mb-6">Try searching with different ingredients or browse all categories</p>
             <button
               onClick={getRandomRecipes}
-              className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl hover:from-emerald-600 hover:to-teal-600 transition-all duration-200"
+              className="px-6 py-3 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded-xl hover:brightness-95 transition-all duration-200"
             >
               Discover Random Recipes
             </button>
