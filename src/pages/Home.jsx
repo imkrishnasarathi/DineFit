@@ -1,7 +1,4 @@
-
-import React from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
 import hero from "../assets/hero.jpg";
 import search from "../assets/search.png";
 import second from "../assets/search.png";
@@ -9,8 +6,6 @@ import third from "../assets/third.png";
 import fourth from "../assets/fourth.png";
 import fifth from "../assets/fifth.png";
 import sixth from "../assets/sixth.png";
-import React from 'react'
-import { useAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -184,100 +179,3 @@ const Home = () => {
   );
 };
 export default Home;
-
-      
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        <div className="text-center">
-          
-          <div className="backdrop-blur-sm bg-[hsl(var(--card))]/40 rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl border border-[hsl(var(--border))]/20 mb-16">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent mb-6 sm:mb-8">
-              {isAuthenticated ? `Welcome back, ${user.name || user.email}!` : 'Welcome to DineFit!'}
-            </h1>
-            <p className="text-xl sm:text-2xl lg:text-3xl text-[hsl(var(--muted-foreground))] mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed">
-              {isAuthenticated 
-                ? 'Ready to plan delicious meals?' 
-                : 'Tired of guessing what to cook? Let DineFit help.'
-              }
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-                {isAuthenticated ? (
-                <Link 
-                  to="/dashboard" 
-                  className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-[hsl(var(--primary-foreground))] bg-[hsl(var(--primary))] rounded-2xl hover:brightness-95 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
-                >
-                  <span className="absolute inset-0 bg-[hsl(var(--primary))] rounded-2xl blur opacity-75 group-hover:opacity-100 transition-opacity duration-300"></span>
-                  <span className="relative">Go to Dashboard </span>
-                </Link>
-              ) : (
-                <>
-                  <Link 
-                    to="/signup" 
-                    className="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-[hsl(var(--primary-foreground))] bg-[hsl(var(--primary))] rounded-2xl hover:brightness-105 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
-                  >
-                    <span className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl blur opacity-75 group-hover:opacity-100 transition-opacity duration-300"></span>
-                    <span className="relative">Start Your Journey</span>
-                  </Link>
-                  <Link 
-                    to="/login" 
-                    className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-[hsl(var(--card-foreground))] bg-[hsl(var(--card))]/60 backdrop-blur-sm rounded-2xl hover:bg-[hsl(var(--card))]/80 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl border border-[hsl(var(--border))]/30"
-                  >
-                    Sign In
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 mt-16 sm:mt-20">
-            <div className="group relative backdrop-blur-sm bg-[hsl(var(--card))]/50 p-8 sm:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-[hsl(var(--border))] transform hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/20 to-teal-100/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10">
-                <div className="text-6xl sm:text-7xl mb-6 filter drop-shadow-lg">👨‍🍳</div>
-                <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-4">Personal Recipes</h3>
-                <p className="text-[hsl(var(--muted-foreground))] text-base sm:text-lg leading-relaxed">
-                  Discover recipes tailored to your personal taste preferences and cooking style.
-                </p>
-              </div>
-            </div>
-
-            <div className="group relative backdrop-blur-sm bg-[hsl(var(--card))]/50 p-8 sm:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-[hsl(var(--border))] transform hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-100/20 to-cyan-100/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10">
-                <div className="text-6xl sm:text-7xl mb-6 filter drop-shadow-lg">🔍</div>
-                <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-4">Smart Discovery</h3>
-                <p className="text-[hsl(var(--muted-foreground))] text-base sm:text-lg leading-relaxed">
-                  Find new recipes that match your flavor preferences and dietary requirements.
-                </p>
-              </div>
-            </div>
-
-            <div className="group relative backdrop-blur-sm bg-[hsl(var(--card))]/50 p-8 sm:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-[hsl(var(--border))] transform hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-100/20 to-blue-100/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10">
-                <div className="text-6xl sm:text-7xl mb-6 filter drop-shadow-lg">❤️</div>
-                <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-4">Recipe Favorites</h3>
-                <p className="text-[hsl(var(--muted-foreground))] text-base sm:text-lg leading-relaxed">
-                  Save and organize recipes you love, creating your personalized collection.
-                </p>
-              </div>
-            </div>
-
-            <div className="group relative backdrop-blur-sm bg-[hsl(var(--card))]/50 p-8 sm:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-[hsl(var(--border))] transform hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-100/20 to-pink-100/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <Link to={isAuthenticated ? "/meal-planner" : "/login"} className="relative z-10 block">
-                <div className="text-6xl sm:text-7xl mb-6 filter drop-shadow-lg">🗓️</div>
-                <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">Meal Planner</h3>
-                <p className="text-[hsl(var(--muted-foreground))] text-base sm:text-lg leading-relaxed">
-                  Plan your meals effortlessly with personalized diet options and flexible scheduling.
-                </p>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-export default Home
-
