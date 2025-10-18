@@ -262,6 +262,57 @@ export const AuthProvider = ({ children }) => {
             }
         }
     };
+    const updateEmail = async (newEmail, password) => {
+        try {
+            if (!user) throw new Error('User not authenticated');
+            if (!password) throw new Error('Current password is required to change email');
+            console.log('Updating email to:', newEmail);
+            
+            // Update email in Appwrite account (requires current password)
+            await account.updateEmail(newEmail, password);
+            
+            // Update local user state
+            const updatedUser = await account.get();
+            setUser(updatedUser);
+            
+            console.log('Email update initiated. Please check your new email for verification.');
+            return updatedUser;
+        } catch (error) {
+            console.error('Email update failed:', error);
+            if (error.message.includes('rate_limit')) {
+                throw new Error('Too many email change attempts. Please wait before trying again.');
+            } else if (error.message.includes('invalid_email')) {
+                throw new Error('Please enter a valid email address.');
+            } else if (error.message.includes('email_already_exists')) {
+                throw new Error('This email is already in use by another account.');
+            } else if (error.message.includes('invalid_credentials')) {
+                throw new Error('Invalid current password. Please check your password and try again.');
+            } else {
+                throw new Error(`Email update failed: ${error.message}`);
+            }
+        }
+    };
+
+    const updateName = async (newName) => {
+        try {
+            if (!user) throw new Error('User not authenticated');
+            console.log('Updating name to:', newName);
+            
+            // Update name in Appwrite account
+            await account.updateName(newName);
+            
+            // Update local user state
+            const updatedUser = await account.get();
+            setUser(updatedUser);
+            
+            console.log('Name updated successfully');
+            return updatedUser;
+        } catch (error) {
+            console.error('Name update failed:', error);
+            throw new Error(`Name update failed: ${error.message}`);
+        }
+    };
+
     const deleteProfile = async () => {
         try {
             if (!userProfile) return;
@@ -325,6 +376,8 @@ export const AuthProvider = ({ children }) => {
         signup,
         guestLogin,
         updateProfile,
+        updateEmail,
+        updateName,
         getUserProfile,
         deleteProfile,
         loading,
