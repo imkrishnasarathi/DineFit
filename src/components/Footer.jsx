@@ -48,6 +48,14 @@ export default function Footer() {
                         >
                             <FaYoutube />
                         </a>
+                         <a
+              href="https://www.linkedin.com/in/krish-kumar-a6214730a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-teal-500 transition-colors duration-300"
+            >
+              <FaLinkedin />
+            </a>
                     </div>
                 </div>
             </div>
