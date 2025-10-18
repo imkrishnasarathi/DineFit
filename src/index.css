@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Bebas+Neue&family=Bitcount+Prop+Single+Ink:wght@100..900&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 @layer base {
   :root {
@@ -35,193 +35,79 @@
   }
 
   .dark {
-  /* Dark mode tuned for comfortable contrast and green accent */
-  --background: 210 15% 9%;        /* very dark blue-gray */
-  --foreground: 210 20% 96%;       /* near-white for text */
-  --card: 210 18% 12%;             /* slightly lighter than background */
-  --card-foreground: 210 20% 96%;
-  --popover: 210 17% 11%;
-  --popover-foreground: 210 20% 96%;
-  --primary: 162 68% 40%;         /* vibrant green for actions */
-  --primary-foreground: 210 20% 8%;
-  --secondary: 210 12% 22%;       /* muted secondary surfaces */
-  --secondary-foreground: 210 20% 96%;
-  --muted: 210 10% 26%;
-  --muted-foreground: 210 14% 66%;
-  --accent: 162 64% 38%;          /* accent same family as primary */
-  --accent-foreground: 210 20% 96%;
-  --destructive: 0 70% 45%;
-  --destructive-foreground: 210 20% 96%;
-  --border: 210 12% 18%;
-  --input: 210 12% 20%;
-  --ring: 162 60% 45%;
-  --chart-1: 200 80% 55%;
-  --chart-2: 160 70% 45%;
-  --chart-3: 40 90% 55%;
-  --chart-4: 260 60% 60%;
-  --chart-5: 330 70% 55%;
+    --background: 210 15% 9%;
+    --foreground: 210 20% 96%;
+    --card: 210 18% 12%;
+    --card-foreground: 210 20% 96%;
+    --popover: 210 17% 11%;
+    --popover-foreground: 210 20% 96%;
+    --primary: 162 68% 40%;
+    --primary-foreground: 210 20% 8%;
+    --secondary: 210 12% 22%;
+    --secondary-foreground: 210 20% 96%;
+    --muted: 210 10% 26%;
+    --muted-foreground: 210 14% 66%;
+    --accent: 162 64% 38%;
+    --accent-foreground: 210 20% 96%;
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 210 20% 96%;
+    --border: 210 12% 18%;
+    --input: 210 12% 20%;
+    --ring: 162 60% 45%;
+    --chart-1: 200 80% 55%;
+    --chart-2: 160 70% 45%;
+    --chart-3: 40 90% 55%;
+    --chart-4: 260 60% 60%;
+    --chart-5: 330 70% 55%;
   }
-}
 
-html,
-body {
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
+  html, body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
 
-#root {
-  min-height: 100vh;
-}
+  #root {
+    min-height: 100vh;
+  }
 
-@layer base {
-  input:focus,
-  textarea:focus,
-  select:focus {
+  input:focus, textarea:focus, select:focus {
     @apply outline-none;
   }
-}
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px) translateX(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-20px) translateX(10px) rotate(1deg);
-  }
-  50% {
-    transform: translateY(-10px) translateX(-5px) rotate(-1deg);
-  }
-  75% {
-    transform: translateY(-30px) translateX(15px) rotate(2deg);
-  }
-}
 
-@keyframes float-delayed {
-  0%,
-  100% {
-    transform: translateY(0px) translateX(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(15px) translateX(-10px) rotate(-1deg);
-  }
-  50% {
-    transform: translateY(5px) translateX(8px) rotate(1deg);
-  }
-  75% {
-    transform: translateY(25px) translateX(-12px) rotate(-2deg);
-  }
-}
-
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-15px) translateX(5px) scale(1.05);
-  }
-}
-
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes sway {
-  0%,
-  100% {
-    transform: skewY(-12deg) translateX(0px);
-  }
-  50% {
-    transform: skewY(-8deg) translateX(5px);
-  }
-}
-
-@keyframes bounce-slow {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-float {
-  animation: float 8s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float-delayed 10s ease-in-out infinite;
-}
-
-.animate-float-slow {
-  animation: float-slow 12s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-
-.animate-sway {
-  animation: sway 6s ease-in-out infinite;
-}
-
-.animate-bounce-slow {
-  animation: bounce-slow 4s ease-in-out infinite;
-}
-
-.grid-cols-20 {
-  grid-template-columns: repeat(20, minmax(0, 1fr));
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #10b981, #14b8a6);
-  border-radius: 2px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #059669, #0d9488);
-}
-
-
-
-@layer base {
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
 
-.font-arimo{
-     font-family: "Arimo", sans-serif;
+.font-arimo {
+  font-family: 'Arimo', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
+
+@keyframes float {0%,100%{transform:translateY(0) translateX(0) rotate(0)}25%{transform:translateY(-20px) translateX(10px) rotate(1deg)}50%{transform:translateY(-10px) translateX(-5px) rotate(-1deg)}75%{transform:translateY(-30px) translateX(15px) rotate(2deg)}}
+@keyframes float-delayed {0%,100%{transform:translateY(0) translateX(0) rotate(0)}25%{transform:translateY(15px) translateX(-10px) rotate(-1deg)}50%{transform:translateY(5px) translateX(8px) rotate(1deg)}75%{transform:translateY(25px) translateX(-12px) rotate(-2deg)}}
+@keyframes float-slow {0%,100%{transform:translateY(0) translateX(0) scale(1)}50%{transform:translateY(-15px) translateX(5px) scale(1.05)}}
+@keyframes spin-slow {from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes sway {0%,100%{transform:skewY(-12deg) translateX(0)}50%{transform:skewY(-8deg) translateX(5px)}}
+@keyframes bounce-slow {0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.animate-float {animation:float 8s ease-in-out infinite;}
+.animate-float-delayed {animation:float-delayed 10s ease-in-out infinite;}
+.animate-float-slow {animation:float-slow 12s ease-in-out infinite;}
+.animate-spin-slow {animation:spin-slow 20s linear infinite;}
+.animate-sway {animation:sway 6s ease-in-out infinite;}
+.animate-bounce-slow {animation:bounce-slow 4s ease-in-out infinite;}
+
+.grid-cols-20 {grid-template-columns:repeat(20,minmax(0,1fr));}
+.scrollbar-hide {-ms-overflow-style:none;scrollbar-width:none;}
+.scrollbar-hide::-webkit-scrollbar {display:none;}
+.custom-scrollbar::-webkit-scrollbar {width:4px;}
+.custom-scrollbar::-webkit-scrollbar-track {background:rgba(0,0,0,0.1);border-radius:2px;}
+.custom-scrollbar::-webkit-scrollbar-thumb {background:linear-gradient(to bottom,#10b981,#14b8a6);border-radius:2px;}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {background:linear-gradient(to bottom,#059669,#0d9488);}
