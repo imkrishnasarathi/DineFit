@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 const ProfileSetup = ({ isFirstTime = false, onComplete, onSkip }) => {
-    const { user, userProfile, updateProfile } = useAuth();
+    const { user: _user, userProfile, updateProfile } = useAuth();
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
