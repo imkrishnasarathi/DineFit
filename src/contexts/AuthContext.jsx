@@ -277,6 +277,31 @@ export const AuthProvider = ({ children }) => {
             throw error;
         }
     };
+    const refreshUserSession = async () => {
+        try {
+            console.log('Refreshing user session...');
+            const currentUser = await account.get();
+            console.log('Session refreshed, user:', currentUser);
+            setUser(currentUser);
+            mealLoggingService.setCurrentUser(currentUser);
+            setError(null);
+            
+            // Try to get user profile
+            try {
+                await getUserProfile(currentUser.$id);
+            } catch (profileError) {
+                console.warn('Failed to load profile after session refresh:', profileError);
+            }
+            
+            return currentUser;
+        } catch (error) {
+            console.error('Failed to refresh user session:', error);
+            setUser(null);
+            setError(null);
+            throw error;
+        }
+    };
+
     const guestLogin = async () => {
         try { 
             setError(null);
@@ -324,6 +349,7 @@ export const AuthProvider = ({ children }) => {
         logout,
         signup,
         guestLogin,
+        refreshUserSession,
         updateProfile,
         getUserProfile,
         deleteProfile,
