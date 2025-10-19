@@ -5,6 +5,7 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
+  const [imageSrc, setImageSrc] = useState(recipe.image || '/dine-fit-logo.svg');
 
   useEffect(() => {
     setIsFavorited(mealLoggingService.isFavorited(recipe.id));

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { advancedRecipeService } from '../services/advancedRecipeService';
 import { mealLoggingService } from '../services/mealLoggingService';
-const RecipeModal = ({ recipe, isOpen, onClose, onSave }) => {
+const RecipeModal = ({ recipe, isOpen, onClose, onSave: _onSave }) => {
   const [recipeDetails, setRecipeDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('ingredients');
