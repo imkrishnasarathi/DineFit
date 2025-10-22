@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 const Settings = () => {
-    const { user, userProfile, updateProfile, logout } = useAuth();
+    const { user, userProfile, updateProfile, logout, deleteAccount } = useAuth();
     const [activeTab, setActiveTab] = useState('profile');
     const [isLoading, setIsLoading] = useState(false);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -208,7 +208,6 @@ const Settings = () => {
                     {activeTab === 'account' && (
                         <div className="space-y-6">
                             <h2 className="text-2xl font-bold text-[hsl(var(--card-foreground))] mb-6">Account Settings</h2>
-                                <h2 className="text-2xl font-bold text-[hsl(var(--card-foreground))] mb-6">Account Settings</h2>
                             <div className="space-y-4">
                                     <div className="bg-[hsl(var(--card))]/50 backdrop-blur-sm rounded-xl p-4 border border-[hsl(var(--border))]">
                                         <h3 className="font-semibold text-[hsl(var(--card-foreground))] mb-2">Account Information</h3>
@@ -251,8 +250,16 @@ const Settings = () => {
                                 Cancel
                             </button>
                             <button
-                                onClick={() => {
+                                onClick={async () => {
                                     setShowDeleteConfirm(false);
+                                    setIsLoading(true);
+                                    try {
+                                        await deleteAccount();
+                                    } catch (e) {
+                                        alert('Failed to delete account. Please try again.');
+                                    } finally {
+                                        setIsLoading(false);
+                                    }
                                 }}
                                 className="flex-1 px-4 py-2 bg-[hsl(var(--destructive))] text-[hsl(var(--destructive-foreground))] rounded-lg hover:brightness-95"
                             >

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { account, databases } from '../appwriteClient';
+import { userRecipeService } from '../services/userRecipeService';
 import { Query } from 'appwrite';
 import { mealLoggingService } from '../services/mealLoggingService';
 import { validatePassword } from '../utils/validation';
@@ -277,6 +278,75 @@ export const AuthProvider = ({ children }) => {
             throw error;
         }
     };
+
+    const deleteAccount = async () => {
+        try {
+            if (!user) return;
+            const userId = user.$id;
+
+            // Best-effort cleanup of user data
+            try {
+                await userRecipeService.clearMealLogs(userId);
+            } catch (e) {
+                console.warn('Failed to clear meal logs during account deletion:', e);
+            }
+            try {
+                await userRecipeService.clearFavorites(userId);
+            } catch (e) {
+                console.warn('Failed to clear favorites during account deletion:', e);
+            }
+            try {
+                await deleteProfile();
+            } catch (e) {
+                console.warn('Failed to delete profile during account deletion:', e);
+            }
+
+            // End sessions and reset local state
+            try {
+                await account.deleteSessions();
+            } catch (e) {
+                console.warn('Failed to delete all sessions, continuing:', e);
+            }
+            try {
+                await account.deleteSession('current');
+            } catch (e) {
+                console.warn('Failed to delete current session, continuing:', e);
+            }
+
+            setUser(null);
+            setUserProfile(null);
+            mealLoggingService.setCurrentUser(null);
+            navigate('/');
+        } catch (error) {
+            console.error('Delete account flow failed:', error);
+            throw error;
+        }
+    };
+    const refreshUserSession = async () => {
+        try {
+            console.log('Refreshing user session...');
+            const currentUser = await account.get();
+            console.log('Session refreshed, user:', currentUser);
+            setUser(currentUser);
+            mealLoggingService.setCurrentUser(currentUser);
+            setError(null);
+            
+            // Try to get user profile
+            try {
+                await getUserProfile(currentUser.$id);
+            } catch (profileError) {
+                console.warn('Failed to load profile after session refresh:', profileError);
+            }
+            
+            return currentUser;
+        } catch (error) {
+            console.error('Failed to refresh user session:', error);
+            setUser(null);
+            setError(null);
+            throw error;
+        }
+    };
+
     const guestLogin = async () => {
         try { 
             setError(null);
@@ -324,9 +394,11 @@ export const AuthProvider = ({ children }) => {
         logout,
         signup,
         guestLogin,
+        refreshUserSession,
         updateProfile,
         getUserProfile,
         deleteProfile,
+        deleteAccount,
         loading,
         error,
         isAuthenticated: !!user,
