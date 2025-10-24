@@ -13,41 +13,56 @@ export default function About() {
           <div className="absolute bottom-32 left-16 w-6 h-16 bg-gradient-to-b from-cyan-400 to-blue-500 transform -skew-y-12 animate-sway opacity-15"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-          <div className="text-center mb-8 backdrop-blur-sm bg-white/30 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent mb-3">
-              About Us
-              <span className="text-white"> 🍽️</span>
-            </h1>
+        <section className="relative overflow-hidden bg-gradient-to-br from-[#E8F9F6] via-white to-[#E8F9F6] py-16 sm:py-20">
+          {/* Decorative background blobs */}
+          <div className="absolute -top-20 -left-20 w-64 h-64 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
+          <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
 
-            <p className="py-5 text-xs sm:text-xl text-gray-700 mb-4 items-start px-5">
-              Welcome to <b>DineFit</b>– your smart kitchen companion for
-              discovering meals that truly fit your lifestyle. At DineFit, we
-              believe eating well shouldn’t be complicated. Our mission is to
-              make healthy, enjoyable, and personalized cooking accessible to
-              everyone. That’s why we’ve created a smart, user-friendly web
-              application designed to recommend recipes that align with your
-              unique diet preferences. <br />
-              <br />
-              Whether you’re vegan, keto, gluten-free, or simply looking for
-              wholesome meals, DineFit helps you find cookable recipes tailored
-              to your likes, dislikes, and dietary needs. By sourcing trusted
-              recipes from reliable online databases, we ensure every suggestion
-              is practical, delicious, and easy to prepare.
-              <br />
-              <br /> Not sure what to cook tonight? Let DineFit decide for you!
-              With just a few clicks, we’ll inspire your next meal, taking the
-              stress out of decision-making and turning your kitchen into a
-              place of creativity and enjoyment. <br />
-              <br />
-              Join us on the journey to smarter cooking, healthier eating, and
-              discovering food that fits you.
-            </p>
-            <div className="font-bold text-xs sm:text-xl">
-              DineFit – Recipes that fit your life.
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row items-center gap-10 backdrop-blur-sm bg-white/40 rounded-3xl p-6 sm:p-10 shadow-2xl border border-white/20 transition hover:shadow-emerald-100/60 hover:scale-[1.01] duration-300">
+
+              {/* Left: Text */}
+              <div className="w-full lg:w-1/2">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent mb-6 text-center lg:text-left">
+                  About Us <span className="text-white">🍽️</span>
+                </h1>
+
+                <div className="mx-auto max-w-xl text-gray-700 text-sm sm:text-lg leading-relaxed text-left space-y-5">
+                  <p>
+                    Welcome to <b>DineFit</b> – your smart kitchen companion for discovering meals that truly fit your lifestyle. At DineFit, we believe eating well shouldn’t be complicated. Our mission is to make healthy, enjoyable, and personalized cooking accessible to everyone.
+                  </p>
+                  <p>
+                    Whether you’re vegan, keto, gluten-free, or simply looking for wholesome meals, DineFit helps you find cookable recipes tailored to your dietary needs.
+                  </p>
+                  <p>
+                    Not sure what to cook tonight? Let DineFit decide for you! We’ll inspire your next meal and turn your kitchen into a place of creativity and enjoyment.
+                  </p>
+                  <p>
+                    Join us on the journey to smarter cooking, healthier eating, and discovering food that fits you.
+                  </p>
+                </div>
+
+                <div className="mt-8 flex items-center justify-center lg:justify-start">
+                  <div className="h-[1px] w-16 bg-gradient-to-r from-transparent via-emerald-500 to-transparent"></div>
+                </div>
+
+                <div className="font-bold text-sm sm:text-xl mt-4 text-emerald-700 text-center lg:text-left">
+                  DineFit – Recipes that fit your life.
+                </div>
+              </div>
+
+              {/* Right: Image */}
+              <div className="w-full lg:w-1/2 flex justify-center">
+                <img
+                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80"
+                  alt="Healthy food illustration"
+                  className="rounded-2xl shadow-lg w-full max-w-md object-cover"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </section>
+
       </div>
     </>
   );

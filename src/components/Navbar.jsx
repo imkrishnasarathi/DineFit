@@ -1,24 +1,46 @@
-import { NavLink, useLocation } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
-import { useTheme } from '../contexts/ThemeContext'
+
+import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useTheme } from "../contexts/ThemeContext";
+
 const Navbar = () => {
   const { user, logout, loading } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isHomePage = location.pathname === "/";
+
   const handleLogout = async () => {
     try {
       await logout();
     } catch (error) {
-      console.error('Logout failed:', error);
+      console.error("Logout failed:", error);
     }
   };
+
+  const navClasses = `sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 shadow-md transition-all duration-300 ${
+    isHomePage
+      ? "bg-white/80 backdrop-blur-md text-gray-800 border-b border-gray-200/20"
+      : "bg-green-600 text-white"
+  }`;
+
+  const baseLink = "block text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200";
+  const activeLink = (isActive) =>
+    isActive
+      ? isHomePage
+        ? "bg-green-600 text-white"
+        : "bg-green-800 text-white"
+      : isHomePage
+      ? "text-gray-700 hover:bg-green-100 hover:text-green-700"
+      : "text-white hover:bg-green-700";
+
   if (loading) {
     return (
-      <nav className={`sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 shadow-md transition-all duration-300 bg-background text-foreground border-b`}>
+      <nav className={navClasses}>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <img src="/dine-fit-logo.svg" alt="DineFit" className="h-12 w-12 sm:h-16 sm:w-16" />
+            <img src="/dine-fit-logo.svg" alt="DineFit" className="h-10 w-10 sm:h-12 sm:w-12" />
             <span className="ml-2 text-base sm:text-lg lg:text-xl font-semibold">DineFit</span>
           </div>
           <div className="text-sm">Loading...</div>
@@ -26,106 +48,97 @@ const Navbar = () => {
       </nav>
     );
   }
+
   return (
-    <nav className={`sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 shadow-md transition-all duration-300 bg-background text-foreground border-b`}>
+    <nav className={navClasses}>
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <img src="/dine-fit-logo.svg" alt="DineFit" className="h-12 w-100 sm:h-16 sm:w-100" />
-          {/* <span className="ml-2 text-base sm:text-lg lg:text-xl font-semibold">DineFit</span> */}
+          <img src="/dine-fit-logo.svg" alt="DineFit" className="h-10 w-10 sm:h-12 sm:w-12" />
+          <span className="ml-2 text-base sm:text-lg lg:text-xl font-semibold">DineFit</span>
         </div>
-        <div className="flex items-center space-x-2 sm:space-x-4">
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className={`p-2 rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-              theme === 'dark'
-                ? 'bg-[hsl(var(--border))] text-[hsl(var(--card-foreground))] hover:bg-[hsl(var(--border))/0.9]'
-                : 'bg-[hsl(var(--card))] text-[hsl(var(--card-foreground))] hover:bg-[hsl(var(--card))/0.95]'
-            }`}
-          >
-            {theme === 'dark' ? '🌙' : '☀️'}
-          </button>
+
+        {/* Desktop Nav */}
+        <div className="hidden sm:flex space-x-4 items-center">
           {user ? (
             <>
-              <span className={`text-sm sm:text-base px-2 sm:px-3 py-1 rounded-full transition-colors duration-200 ${
-                isHomePage
-                  ? 'bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] shadow-sm'
-                  : 'bg-[hsl(var(--card))] text-[hsl(var(--card-foreground))] border border-[hsl(var(--border))]'
-              }`}>
+              <span className={`text-sm sm:text-base px-2 sm:px-3 py-1 rounded ${isHomePage ? 'bg-green-50 text-green-700 border border-green-200' : 'text-white'}`}>
                 Welcome, {user.name || user.email}
               </span>
-              <NavLink 
-                to="/dashboard" 
-                className={({isActive}) => `text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                    isActive 
-                    ? (isHomePage ? 'bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]' : 'bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]')
-                    : (isHomePage ? 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--card))] hover:text-[hsl(var(--primary))]' : 'text-[hsl(var(--card-foreground))] hover:bg-[hsl(var(--primary))]')
-                }`}
-              >
+              <NavLink to="/dashboard" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
                 Dashboard
               </NavLink>
-              <NavLink 
-                to="/meal-planner" 
-                className={({isActive}) => `text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                  isActive 
-          ? (isHomePage ? 'bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]' : 'bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]')
-          : (isHomePage ? 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--card))] hover:text-[hsl(var(--primary))]' : 'text-[hsl(var(--card-foreground))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))]')
-                }`}
-              >
+              <NavLink to="/meal-planner" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
                 Meal Planner
               </NavLink>
-              <button 
-                onClick={handleLogout}
-                className={`text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                  isHomePage 
-                    ? 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--card))] hover:text-[hsl(var(--destructive))]' 
-                    : 'text-[hsl(var(--card-foreground))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))]'
-                }`}
-              >
+              <button onClick={handleLogout} className={`${baseLink} ${isHomePage ? 'text-red-600' : 'text-white'}`}>
                 Logout
               </button>
             </>
           ) : (
             <>
-              <NavLink 
-                to="/" 
-                className={`text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                  isHomePage 
-                    ? 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--card))] hover:text-[hsl(var(--primary))]' 
-                    : 'text-[hsl(var(--card-foreground))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))]'
-                }`}
-              >
+              <NavLink to="/" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
                 Home
               </NavLink>
-              <NavLink 
-                to="/login" 
-                className={({isActive}) => `text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                  isActive 
-                    ? 'bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]'
-                    : (isHomePage ? 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--card))] hover:text-[hsl(var(--primary))]' : 'text-[hsl(var(--card-foreground))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))]')
-                }`}
-              >
+              <NavLink to="/about" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
+                About
+              </NavLink>
+              <NavLink to="/login" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
                 Login
               </NavLink>
               {!isHomePage && (
-                <NavLink 
-                  to="/signup" 
-                  className={({isActive}) => `text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-                    isActive 
-                      ? 'bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]'
-                      : 'text-[hsl(var(--card-foreground))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))]'
-                  }`}
-                >
+                <NavLink to="/signup" className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
                   Signup
                 </NavLink>
               )}
             </>
           )}
+          <button onClick={toggleTheme} aria-label="Toggle theme" className="px-2 py-1 rounded">
+            {theme === 'dark' ? '🌙' : '☀️'}
+          </button>
+        </div>
+
+        {/* Mobile hamburger */}
+        <div className="sm:hidden">
+          <button onClick={() => setMenuOpen((s) => !s)} className="p-2">
+            <span className="sr-only">Toggle menu</span>
+            <div className={`w-5 h-0.5 bg-current mb-1 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
+            <div className={`w-5 h-0.5 bg-current mb-1 ${menuOpen ? 'opacity-0' : ''}`}></div>
+            <div className={`w-5 h-0.5 bg-current ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
+          </button>
         </div>
       </div>
-    </nav>
-  )
-}
 
-export default Navbar
+      {/* Mobile Nav */}
+      {menuOpen && (
+        <div className="sm:hidden mt-3 space-y-2">
+          {user ? (
+            <>
+              <div className="px-2">Welcome, {user.name || user.email}</div>
+              <NavLink to="/dashboard" onClick={() => setMenuOpen(false)} className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
+                Dashboard
+              </NavLink>
+              <NavLink to="/meal-planner" onClick={() => setMenuOpen(false)} className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
+                Meal Planner
+              </NavLink>
+              <button onClick={handleLogout} className={`${baseLink}`}>Logout</button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/" onClick={() => setMenuOpen(false)} className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
+                Home
+              </NavLink>
+              <NavLink to="/login" onClick={() => setMenuOpen(false)} className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
+                Login
+              </NavLink>
+              <NavLink to="/signup" onClick={() => setMenuOpen(false)} className={({ isActive }) => `${baseLink} ${activeLink(isActive)}`}>
+                Signup
+              </NavLink>
+            </>
+          )}
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;

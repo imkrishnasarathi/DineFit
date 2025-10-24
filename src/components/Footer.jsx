@@ -17,16 +17,38 @@ export default function Footer() {
                     </p>
                 </div>
 
-            <a
-              href="https://www.youtube.com/@krishcodes"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-teal-500 transition-colors duration-300"
-            >
-              <FaYoutube />
-            </a>
+                {/* Social Links */}
+                <div className="text-center md:text-left">
+                    <h3 className="font-semibold text-[hsl(var(--card-foreground))] mb-4 text-lg">Follow Me</h3>
+                    <div className="flex justify-center md:justify-start gap-6 text-2xl">
 
-            <a
+                        <a
+                            href="https://github.com/imkrishnasarathi"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-teal-500 transition-colors duration-300"
+                        >
+                            <FaGithub />
+                        </a>
+
+                        <a
+                            href="https://x.com/CodesKae"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-teal-500 transition-colors duration-300"
+                        >
+                            <FaTwitter />
+                        </a>
+
+                        <a
+                            href="https://www.youtube.com/@krishcodes"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-teal-500 transition-colors duration-300"
+                        >
+                            <FaYoutube />
+                        </a>
+                         <a
               href="https://www.linkedin.com/in/krish-kumar-a6214730a/"
               target="_blank"
               rel="noopener noreferrer"
@@ -34,18 +56,16 @@ export default function Footer() {
             >
               <FaLinkedin />
             </a>
+                    </div>
+                </div>
+            </div>
 
-          </div>
-        </div>
-      </div>
-      <div className="max-w-7xl mx-auto px-6 py-2 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 text-sm text-gray-700">
-        <NavLink to="/privacy-policy">Privacy Policy</NavLink>
-      </div>
-      {/* Bottom bar */}
-      <div className="border-t border-white/20 text-center py-4 text-gray-600 dark:text-gray-400 text-sm">
-        © {new Date().getFullYear()} DineFit. All rights reserved. | Built with
-        ❤️ by Krishnasarathi
-      </div>
-    </footer>
-  );
+
+
+            {/* Bottom bar */}
+            <div className="border-t border-[hsl(var(--border))] text-center py-4 text-[hsl(var(--muted-foreground))] text-sm">
+                © {new Date().getFullYear()} DineFit. All rights reserved. | Built with ❤️ by Krishnasarathi
+            </div>
+        </footer>
+    );
 }

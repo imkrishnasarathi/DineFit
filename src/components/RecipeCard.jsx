@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { mealLoggingService } from '../services/mealLoggingService';
+
 const RecipeCard = ({ recipe, onClick, onSave }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
-  const [imageSrc, setImageSrc] = useState(recipe.image || '/dine-fit-logo.svg');
+
   useEffect(() => {
     setIsFavorited(mealLoggingService.isFavorited(recipe.id));
   }, [recipe.id]);
-  useEffect(() => {
-    setImageSrc(recipe.image || '/dine-fit-logo.svg');
-  }, [recipe.image]);
+
   const handleSave = async (e) => {
     e.stopPropagation(); // Prevent card click
     setIsLoading(true);
@@ -26,13 +25,14 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
       setIsLoading(false);
     }
   };
+
   return (
     <div 
-      className="backdrop-blur-sm bg-[hsl(var(--card)/0.6)] rounded-2xl shadow-lg border border-[hsl(var(--border))] hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer overflow-hidden group"
+      className="backdrop-blur-sm bg-white/40 rounded-2xl shadow-lg border border-white/30 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer overflow-hidden group flex flex-col h-full"
       onClick={() => onClick?.(recipe)}
     >
       
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-48 overflow-hidden flex-shrink-0">
         <img
           src={imageSrc}
           alt={recipe.name || 'Recipe image'}
@@ -87,8 +87,8 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
         )}
       </div>
       
-      <div className="p-4">
-        <h3 className="font-bold text-lg text-[hsl(var(--card-foreground))] mb-2 line-clamp-2 group-hover:text-[hsl(var(--primary))] transition-colors duration-200">
+      <div className="p-4 flex flex-col flex-grow">
+        <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-2 group-hover:text-emerald-600 transition-colors duration-200">
           {recipe.name}
         </h3>
         <div className="flex items-center justify-between text-sm text-[hsl(var(--muted-foreground))] mb-3">
@@ -127,11 +127,12 @@ const RecipeCard = ({ recipe, onClick, onSave }) => {
           </div>
         )}
         
-  <button className="w-full mt-3 px-4 py-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-medium rounded-xl hover:brightness-105 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg">
+        <button className="w-full mt-auto px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-medium rounded-xl hover:from-emerald-600 hover:to-teal-600 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg">
           View Recipe
         </button>
       </div>
     </div>
   );
 };
+
 export default RecipeCard;
