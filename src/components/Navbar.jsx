@@ -14,28 +14,30 @@ const Navbar = () => {
   const handleLogout = () => setShowLogoutConfirm(true);
 
   const confirmLogout = async () => {
+  const handleLogout = async () => {
     try {
       await logout();
       setShowLogoutConfirm(false);
     } catch (error) {
       console.error("Logout failed:", error);
-      setShowLogoutConfirm(false);
     }
   };
 
-  const cancelLogout = () => setShowLogoutConfirm(false);
+  const navClasses = `sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 shadow-md transition-all duration-300 ${
+    isHomePage
+      ? "bg-white/80 backdrop-blur-md text-gray-800 border-b border-gray-200/20"
+      : "bg-green-600 text-white"
+  }`;
 
-  // Navbar classes
-  const navClasses = `sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 shadow-md transition-all duration-300 bg-background text-foreground border-b`;
-
-  const linkClasses = (isActive, isHomePage) =>
-    `text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200 ${
-      isActive
-        ? "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
-        : isHomePage
-        ? "text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--card))] hover:text-[hsl(var(--primary))]"
-        : "text-[hsl(var(--card-foreground))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))]"
-    }`;
+  const baseLink = "block text-sm sm:text-base px-2 sm:px-3 py-1 rounded transition-colors duration-200";
+  const activeLink = (isActive) =>
+    isActive
+      ? isHomePage
+        ? "bg-green-600 text-white"
+        : "bg-green-800 text-white"
+      : isHomePage
+      ? "text-gray-700 hover:bg-green-100 hover:text-green-700"
+      : "text-white hover:bg-green-700";
 
   if (loading) {
     return (
@@ -50,6 +52,8 @@ const Navbar = () => {
             <span className="ml-2 text-base sm:text-lg lg:text-xl font-semibold">
               DineFit
             </span>
+            <img src="/dine-fit-logo.svg" alt="DineFit" className="h-10 w-10 sm:h-12 sm:w-12" />
+            <span className="ml-2 text-base sm:text-lg lg:text-xl font-semibold">DineFit</span>
           </div>
           <div className="text-sm">Loading...</div>
         </div>
@@ -263,6 +267,9 @@ const Navbar = () => {
               )}
             </>
           )}
+          <button onClick={toggleTheme} aria-label="Toggle theme" className="px-2 py-1 rounded">
+            {theme === 'dark' ? '🌙' : '☀️'}
+          </button>
         </div>
       </nav>
     </>
