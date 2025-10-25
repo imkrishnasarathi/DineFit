@@ -272,6 +272,26 @@ class UserRecipeService {
     }
   }
 
+  async clearFavorites(userId) {
+    try {
+      const response = await databases.listDocuments(
+        this.databaseId,
+        this.favoritesCollectionId,
+        [Query.equal('userId', userId)]
+      );
+
+      const deletePromises = response.documents.map(doc =>
+        databases.deleteDocument(this.databaseId, this.favoritesCollectionId, doc.$id)
+      );
+
+      await Promise.all(deletePromises);
+      console.log('🗑️ All favorites cleared from database');
+    } catch (error) {
+      console.error('Error clearing favorites from database:', error);
+      throw error;
+    }
+  }
+
   // Helper methods
   extractIngredientsText(recipe) {
     if (recipe.ingredients && Array.isArray(recipe.ingredients)) {
